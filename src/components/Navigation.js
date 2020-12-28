@@ -1,45 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
-// import SignOutButton from '../SignOut';
-import * as ROUTES from '../constants/routes';
+//IMPORT COMPONENTS
+// import LocationPicker from '../components/LocationPicker';
+// import Profile from './components/Profile';
+// import Projects from './components/Projects';
+// import Contact from './components/Contact';
 
-// import { AuthUserContext } from '../Session';
+// import './App.css';
 
-// import './index.css';
+import {
+  Link
+} from 'react-router-dom';
 
-// const Navigation = () => (
-//   <div className ="nav">
-//     <AuthUserContext.Consumer>
-//       {authUser =>
-//         authUser ? <NavigationAuth /> : <NavigationNonAuth />
-//       }
-//     </AuthUserContext.Consumer>
-//   </div>
-// );
 
-const Navigation = () => (
-  <div className="space-between">
-  <ul>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.LOCATIONPICKER}>Map</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-  </ul>
-  </div>
-);
 
-// const NavigationNonAuth = () => (
-//   <ul>
-//     <li>
-//       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-//     </li>
-//   </ul>
-// );
+const Navigation = props => {
+    console.log("menu r")
+    return (
+  
+        <div className="menu-items">
+          <ul>
+            <li><Link className="menu-link" exact="true" to="/location">Location</Link></li>
+            {/* <li><Link className="menu-link" to="/about">What do I do</Link></li>
+            <li><Link className="menu-link" to="/projects">Projects</Link></li>
+            <li><Link className="menu-link" to="/contact">Contact</Link></li> */}
+          </ul>
+        </div>
+     
+      );
+  };
+  
+  
+
+
 
 export default Navigation;

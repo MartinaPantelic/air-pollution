@@ -69,6 +69,7 @@ export default function LocationPicker() {
   if (!isLoaded) return "Loading...";
 
   return (
+      
     <div>
       <h1>
         Bears{" "}
@@ -203,3 +204,6 @@ function Search({ panTo }) {
     </div>
   );
 }
+
+
+

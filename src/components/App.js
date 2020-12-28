@@ -4,6 +4,11 @@ import LocationPicker from "./LocationPicker"
 import { CurrentAir } from "./CurrentAir"
 import Navigation from "./Navigation"
 
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 export default function App() {
   const [airData, setAirData] = useState(null)
@@ -29,12 +34,29 @@ export default function App() {
   }
 
   return (
+    <BrowserRouter>
+    <React.Fragment>
+
+      <div>
+      
+        <Switch>
+          <Route path='/location' component={LocationPicker} />
+          {/* <Route exact path="/" component={Profile} />
+          <Route path='/projects' component={Projects} />
+          <Route path='/contact' component={Contact} /> */}
+        </Switch>
+
+      </div>
+
+
+    </React.Fragment>
     <div className="App">
       <CurrentAir api={airData} />
-      <LocationPicker/>
-      {/* <Navigation /> */}
+    
+      <Navigation />
      
-      {/* <div>{weather.coord.lon}</div> */}
     </div>
+  </BrowserRouter>
+
   )
 }
