@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import LocationPicker from "./LocationPicker"
 import { CurrentAir } from "./CurrentAir"
 
 
@@ -29,6 +30,7 @@ export default function App() {
   return (
     <div className="App">
       <CurrentAir api={airData} />
+      <LocationPicker/>
      
       {/* <div>{weather.coord.lon}</div> */}
     </div>
