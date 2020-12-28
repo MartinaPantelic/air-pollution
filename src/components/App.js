@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import LocationPicker from "./LocationPicker"
 import { CurrentAir } from "./CurrentAir"
+import Navigation from "./Navigation"
 
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
     <div className="App">
       <CurrentAir api={airData} />
       <LocationPicker/>
+      {/* <Navigation /> */}
      
       {/* <div>{weather.coord.lon}</div> */}
     </div>
