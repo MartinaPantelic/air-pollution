@@ -63,6 +63,7 @@ export default function LocationPicker() {
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
+    console.log(lat)
   }, []);
 
   if (loadError) return "Error";
@@ -76,6 +77,8 @@ export default function LocationPicker() {
         <span role="img" aria-label="tent">
           ⛺️
         </span>
+       
+     
       </h1>
 
       <Locate panTo={panTo} />
@@ -114,6 +117,8 @@ export default function LocationPicker() {
             }}
           >
             <div>
+            {selected.lat}
+            {selected.lng}
               <h2>
                 <span role="img" aria-label="bear">
                   🐻
@@ -140,6 +145,7 @@ function Locate({ panTo }) {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             });
+          
           },
           () => null
         );
@@ -147,6 +153,7 @@ function Locate({ panTo }) {
     >
       <img src="/compass.svg" alt="compass" />
     </button>
+
   );
 }
 
