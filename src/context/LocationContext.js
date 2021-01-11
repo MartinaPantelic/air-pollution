@@ -38,14 +38,18 @@ const center = {
   lng: -79.3832,
 };
 
+const selected = {
+    lat: "",
+  };
+  
 const LocationContextProvider = (props) => {
-  const [locations, setlocations] = useState([
-    {title: 'name of the wind', id: 1, log: 8},
-    {title: 'the way of kings', id: 2},
-    {title: 'the final empire', id: 3},
-    {title: 'the hero of ages', id: 4}
-  ]);
-
+ 
+    const [locations, setlocations] = useState([
+        {title: 'name of the wind ', id: 1, log: center.lng},
+        {title: 'the way of kings', id: 2},
+        {title: 'the final empire', id: 3},
+        {title: 'the hero of ages', id: 4}
+      ]);
 //
 const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -76,6 +80,8 @@ const { isLoaded, loadError } = useLoadScript({
     console.log(lat)
   }, []);
 
+
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -83,7 +89,7 @@ const { isLoaded, loadError } = useLoadScript({
   //
   
   return (
-    <LocationContext.Provider value={{locations}}>
+    <LocationContext.Provider value={{locations, markers}}>
       {props.children}
 
 {/* google map */}
@@ -108,6 +114,7 @@ const { isLoaded, loadError } = useLoadScript({
         options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
+        value={{locations}}
       >
         {markers.map((marker) => (
           <Marker

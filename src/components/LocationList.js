@@ -3,7 +3,7 @@ import { LocationContext } from '../context/LocationContext';
 
 const LocationList = () => {
  
-  const { locations } = useContext(LocationContext);
+  const { locations, markers } = useContext(LocationContext);
   
  
   return ( 
@@ -15,6 +15,15 @@ const LocationList = () => {
           );
         })}
       </ul>
+      <ul>
+        {markers.map(marker => {
+          return (
+          <li><span>{marker.lng}</span></li>
+          );
+        })}
+      </ul>
+{/* <div>{marker.current.lng}</div> */}
+    
     </div>
   );
 }
