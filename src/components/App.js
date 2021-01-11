@@ -7,10 +7,10 @@ import PrivateRoute from "./PrivateRoute"
 import SignUp from "./SignUp"
 import { AuthProvider } from "../context/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-// import BookList from './BookList';
+import testComp from './test-comp';
 // import BookContextProvider from '../context/BookContext';
-import LocationList from './LocationList';
-import LocationContextProvider from '../context/LocationContext';
+// import LocationList from './LocationList';
+// import LocationContextProvider from '../context/LocationContext';
 
 
 export default function App() {
@@ -31,14 +31,15 @@ export default function App() {
 
 
           <Route path="/signup" component={SignUp} />
+          <Route path="/test-comp" component={testComp} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           {/* <BookContextProvider>
             <BookList />
           </BookContextProvider> */}
 
-          <LocationContextProvider>
+          {/* <LocationContextProvider>
             <LocationList />
-          </LocationContextProvider>
+          </LocationContextProvider> */}
 
           <Route path="/current_air" component={CurrentAir} />
           {/* <Route path="/login" component={Login} />

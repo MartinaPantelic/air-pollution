@@ -14,6 +14,8 @@ const Navigation = props => {
       <ul>
       <li><Link className="menu-link" exact="true" to="/">home</Link></li>
         <li><Link className="menu-link" exact="true" to="/location">Location</Link></li>
+        <li><Link className="menu-link" exact="true" to="/location-list">Location list</Link></li>
+        <li><Link className="menu-link" exact="true" to="/test-comp">book list</Link></li>
         <li><Link className="menu-link" exact="true" to="/current_air">Current Air</Link></li>
         <li>
           <Link to="/update-profile" className="menu-link">
