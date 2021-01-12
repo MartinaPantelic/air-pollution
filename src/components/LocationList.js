@@ -12,7 +12,7 @@ const LocationList = () => {
       <ul>
         {markers.map(marker => {
           return (
-          <li><span>{marker.lng}</span></li>
+          <li><span>{marker.lng} ovo je iz location list</span></li>
           );
         })}
       </ul>
@@ -20,5 +20,7 @@ const LocationList = () => {
     </div>
   );
 }
+
+
  
 export default LocationList;

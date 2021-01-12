@@ -1,21 +1,30 @@
 
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import { LocationContext } from '../context/LocationContext';
 import axios from "axios"
 
 function CurrentAir() {
   const [airData, setAirData] = useState(null)
-
+  const { markers } = useContext(LocationContext);
+  let marker = {lng: 50, lat: 55};
+  console.log(markers)
   useEffect(() => {
     async function getData() {
      
-      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=50&lon=50&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${marker.lng}&lon=${marker.lat}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
       try {
         const response = await axios.get(url)
         setAirData(response.data)
       } catch (err) {
-        console.log(err)
+       
       }
+      console.log(markers.map(marker => {
+          
+        return (
+        marker.lng
+        );
+      }))
     }
     getData()
   }, [])
@@ -32,10 +41,30 @@ function CurrentAir() {
     <div>
  
       <div>{airData.coord.lon}</div>
+      <div>{marker.lon}</div>
+      <div>{marker.lng}</div>
       <div>{airData.list[0].components.co}</div>
+
+      <div className="book-list">
+      
+      <ul>
+        {markers.map(marker => {
+          
+          return (
+          <li><span>{marker.lng}</span></li>
+          );
+        })}
+      </ul>
     
     </div>
+    
+    </div>
+
+    
   )
 }
+
+
+
 
 export default CurrentAir
