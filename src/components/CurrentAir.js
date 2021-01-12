@@ -6,29 +6,50 @@ import axios from "axios"
 
 function CurrentAir() {
   const [airData, setAirData] = useState(null)
+
   const { markers } = useContext(LocationContext);
   let marker = {lng: 50, lat: 55};
-  console.log(markers)
+  console.log(markers.length)
+  console.log(marker.lng)
+
+let longitude =  markers.map(marker => {
+          
+  return (
+marker.lng
+  );
+})
+
+  let finalMarkerLng = (markers.length !== 0) ? longitude[longitude.length - 1] : marker.lng;
+  console.log(finalMarkerLng)
   useEffect(() => {
     async function getData() {
      
-      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${marker.lng}&lon=${marker.lat}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${finalMarkerLng}&lon=${marker.lat}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+
+      console.log(url);
       try {
         const response = await axios.get(url)
         setAirData(response.data)
       } catch (err) {
        
       }
-      console.log(markers.map(marker => {
-          
-        return (
-        marker.lng
-        );
-      }))
+
+      
+     
     }
     getData()
   }, [])
 
+  console.log(
+   
+    markers.map(marker => {
+          
+    return (
+  marker.lng
+    );
+  }));
+
+  
 
 
   if (!airData) {
@@ -42,7 +63,7 @@ function CurrentAir() {
  
       <div>{airData.coord.lon}</div>
       <div>{marker.lon}</div>
-      <div>{marker.lng}</div>
+      <div>{finalMarkerLng}</div>
       <div>{airData.list[0].components.co}</div>
 
       <div className="book-list">
