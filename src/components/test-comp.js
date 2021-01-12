@@ -1,12 +1,12 @@
 import React from "react"
-            
-import BookList from './BookList';
-import BookContextProvider from '../context/BookContext';
+
+import LocationList from './LocationList';
+import LocationContextProvider from '../context/LocationContext';
 const testComp = () => {
     return ( 
-   <BookContextProvider>
-    <BookList />
-    </BookContextProvider>
+   <LocationContextProvider>
+            <LocationList />
+          </LocationContextProvider> 
     )    
 }
 

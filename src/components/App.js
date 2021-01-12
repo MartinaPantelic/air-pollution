@@ -32,6 +32,9 @@ export default function App() {
 
           <Route path="/signup" component={SignUp} />
           <Route path="/test-comp" component={testComp} />
+
+          
+
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           {/* <BookContextProvider>
             <BookList />
