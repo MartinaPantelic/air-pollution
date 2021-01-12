@@ -13,18 +13,26 @@ function CurrentAir() {
   console.log(marker.lng)
 
 let longitude =  markers.map(marker => {
-          
   return (
 marker.lng
   );
 })
 
+let latitude =  markers.map(marker => {
+  return (
+marker.lat
+  );
+})
+
   let finalMarkerLng = (markers.length !== 0) ? longitude[longitude.length - 1] : marker.lng;
+  let finalMarkerLat = (markers.length !== 0) ? latitude[latitude.length - 1] : marker.lat;
+
   console.log(finalMarkerLng)
+  
   useEffect(() => {
     async function getData() {
      
-      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${finalMarkerLng}&lon=${marker.lat}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${finalMarkerLng}&lon=${finalMarkerLat}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
 
       console.log(url);
       try {
@@ -33,12 +41,10 @@ marker.lng
       } catch (err) {
        
       }
-
-      
      
     }
     getData()
-  }, [])
+  }, [finalMarkerLng, finalMarkerLat])
 
   console.log(
    
