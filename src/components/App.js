@@ -3,6 +3,9 @@ import LocationPicker from "./LocationPicker"
 import CurrentAir from "./CurrentAir"
 import Navigation from "./Navigation"
 import UpdateProfile from "./UpdateProfile"
+import ForgotPassword from "./ForgotPassword"
+import Login from "./Login"
+import Dashboard from './Dashboard'
 import PrivateRoute from "./PrivateRoute"
 import SignUp from "./SignUp"
 import { AuthProvider } from "../context/AuthContext"
@@ -25,26 +28,13 @@ export default function App() {
 
         <Switch>
           <Route path='/location' component={LocationPicker} />
-         
 
-
-          <Route path="/signup" component={SignUp} />
-          {/* <Route path="/test-comp" component={testComp} /> */}
-
-          
-
-          <PrivateRoute path="/update-profile" component={UpdateProfile} />
-          {/* <BookContextProvider>
-            <BookList />
-          </BookContextProvider> */}
-
-          {/* <LocationContextProvider>
-            <LocationList />
-          </LocationContextProvider> */}
-
-          {/* <Route path="/current_air" component={CurrentAir} /> */}
-          {/* <Route path="/login" component={Login} />
-              <Route path="/forgot-password" component={ForgotPassword} /> */}
+          <PrivateRoute exact path="/" component={Dashboard} />
+                            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                            <Route exact path="/login" component={Login} />
+                            <Route path="/signup" component={SignUp} />
+                            <Route path="/forgot-password" component={ForgotPassword} />
+       
         </Switch>
 
       </AuthProvider>
