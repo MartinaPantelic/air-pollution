@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { LocationContext } from '../context/LocationContext';
 
-const LocationList = () => {
+const LocationSearch = () => {
  
   const { markers } = useContext(LocationContext);
   
@@ -12,7 +12,7 @@ const LocationList = () => {
       <ul>
         {markers.map(marker => {
           return (
-          <li><span>{marker.lng} ovo je iz location list</span></li>
+          <li><span>{marker.lng} ovo je iz location search</span></li>
           );
         })}
       </ul>
@@ -23,4 +23,4 @@ const LocationList = () => {
 
 
  
-export default LocationList;
+export default LocationSearch;

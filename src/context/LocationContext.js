@@ -1,11 +1,16 @@
 import React, { createContext, useState } from 'react';
+import axios from "axios";
 //
 import {
   GoogleMap,
   useLoadScript,
   Marker,
-  InfoWindow,
+  InfoWindow
+ 
 } from "@react-google-maps/api";
+
+
+
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -40,15 +45,21 @@ const center = {
 };
 
 
-const LocationContextProvider = (props) => {
 
+const LocationContextProvider = (props) => {
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
   const [markers, setMarkers] = React.useState([]);
+
+  // let [latitude, setLatitude] = React.useState(-33.7560119)
+  // let [longitude, setLongitude] = React.useState(150.6038367)
+
   const [selected, setSelected] = React.useState(null);
+  const [airData, setAirData] = useState(null)
+  
 
   const onMapClick = React.useCallback((e) => {
     setMarkers((current) => [
@@ -64,14 +75,36 @@ const LocationContextProvider = (props) => {
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
+   
+   
   }, []);
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
+   
     mapRef.current.setZoom(14);
-    console.log(lat)
+    
+      async function getData() {
+       
+        const url = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lng}&lon=${lat}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+  
+        console.log(url);
+        try {
+          const response = await axios.get(url)
+          setAirData(response.data)
+        } catch (err) {
+         
+        }
+       
+      }
+      getData()
+  
+  
+ 
+  
   }, []);
 
+  
 
 
   if (loadError) return "Error";
@@ -97,6 +130,7 @@ const LocationContextProvider = (props) => {
           </h1>
 
           <Locate panTo={panTo} />
+         
           <Search panTo={panTo} />
 
           <GoogleMap
@@ -107,8 +141,13 @@ const LocationContextProvider = (props) => {
             options={options}
             onClick={onMapClick}
             onLoad={onMapLoad}
+            render={({
+            
+            
+            })}
 
           >
+           
             {markers.map((marker) => (
               <Marker
                 key={`${marker.lat}-${marker.lng}`}
@@ -125,6 +164,10 @@ const LocationContextProvider = (props) => {
               />
             ))}
 
+
+
+
+
             {selected ? (
               <InfoWindow
                 position={{ lat: selected.lat, lng: selected.lng }}
@@ -139,7 +182,9 @@ const LocationContextProvider = (props) => {
                     <span role="img" aria-label="bear">
                       🐻
                 </span>{" "}
-                pollution index
+                <div><span>AQI: </span>
+                {/* {airData.list[0].main.aqi} */}
+                </div>
               </h2>
                   <p>Spotted {formatRelative(selected.time, new Date())}</p>
                 </div>
@@ -155,6 +200,7 @@ const LocationContextProvider = (props) => {
 
 
 function Locate({ panTo }) {
+ 
   return (
     <button
       className="locate"
@@ -178,6 +224,7 @@ function Locate({ panTo }) {
 }
 
 function Search({ panTo }) {
+ 
   const {
     ready,
     value,
@@ -191,6 +238,8 @@ function Search({ panTo }) {
     },
   });
 
+  
+
   // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
   const handleInput = (e) => {
@@ -200,15 +249,22 @@ function Search({ panTo }) {
   const handleSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
-
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
       panTo({ lat, lng });
+      
+    
+     
     } catch (error) {
       console.log("😱 Error: ", error);
     }
+
+    
   };
+
+
+
 
   return (
     <div className="search">

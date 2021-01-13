@@ -1,12 +1,16 @@
 import React from "react"
 
-import LocationList from './LocationList';
+import LocationSearch from './LocationSearch';
 import LocationContextProvider from '../context/LocationContext';
 import CurrentAir from "./CurrentAir";
+import ForecastAir from "./ForecastAir";
+
+
 const locationPicker = () => {
     return ( 
    <LocationContextProvider>
-            <LocationList />
+            <LocationSearch />
+            <ForecastAir />
             <CurrentAir />
           </LocationContextProvider> 
     )    

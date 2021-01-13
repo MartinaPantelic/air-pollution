@@ -28,6 +28,7 @@ export default function App() {
 
         <Switch>
           <Route path='/location' component={LocationPicker} />
+          
 
           <PrivateRoute exact path="/" component={Dashboard} />
                             <PrivateRoute path="/update-profile" component={UpdateProfile} />
