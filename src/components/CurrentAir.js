@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { LocationContext } from '../context/LocationContext';
+import { Table } from "react-bootstrap"
 import axios from "axios"
 
 function CurrentAir() {
@@ -61,6 +62,35 @@ marker.lat
   console.log(airData)
   return (
     <div>
+
+<Table responsive>
+  <thead>
+    <tr>
+      <th>CO</th>
+      <th>NO</th>
+      <th>NO<span>2</span></th>
+      <th>O<span>3</span></th>
+      <th>SO<span>2</span></th>
+      <th>PM<span>2_5</span></th>
+      <th>PM<span>10</span></th>
+      <th>NH<span>3</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{airData.list[0].components.co}</td>
+      <td>{airData.list[0].components.no}</td>
+      <td>{airData.list[0].components.no2}</td>
+      <td>{airData.list[0].components.o3}</td>
+      <td>{airData.list[0].components.so2}</td>
+      <td>{airData.list[0].components.pm2_5}</td>
+      <td>{airData.list[0].components.pm10}</td>
+      <td>{airData.list[0].components.nh3}</td>
+     
+    </tr>
+   
+  </tbody>
+</Table>
  
       <div>{airData.coord.lon}</div>
       <div>{marker.lon}</div>
