@@ -1,6 +1,5 @@
 import React from "react"
 import LocationPicker from "./LocationPicker"
-import CurrentAir from "./CurrentAir"
 import Navigation from "./Navigation"
 import UpdateProfile from "./UpdateProfile"
 import ForgotPassword from "./ForgotPassword"

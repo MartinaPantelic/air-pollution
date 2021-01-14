@@ -71,6 +71,21 @@ const LocationContextProvider = (props) => {
     
   }, []);
 
+
+  // const onSaveLocation = React.useCallback((e) => {
+  //   setMarkers((current) => [
+  //     ...current,
+  //     {
+  //       lat: e.latLng.lat(),
+  //       lng: e.latLng.lng(),
+       
+  //     },
+  //   ]);
+    
+  // }, []);
+
+
+
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
@@ -118,7 +133,7 @@ const LocationContextProvider = (props) => {
 
           </h1>
 
-          <Locate panTo={panTo} />
+          <Locate panTo={panTo}  />
 
           <Search panTo={panTo} />
 
@@ -197,13 +212,15 @@ function Locate({ panTo }) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
+              lat: (position.coords.latitude),
+              lng: (position.coords.longitude),
             });
-
           },
+          
           () => null
+          
         );
+      
       }}
     >
       <img src="/compass.svg" alt="compass" />

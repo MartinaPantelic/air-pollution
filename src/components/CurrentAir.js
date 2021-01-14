@@ -6,10 +6,9 @@ import axios from "axios"
 function CurrentAir() {
   const [airData, setAirData] = useState(null)
 
-  const { markers, finalLat, finalLng } = useContext(LocationContext);
+  const { markers } = useContext(LocationContext);
   let marker = {lng: 50, lat: 55};
-  console.log(markers.length)
-  console.log(marker.lng)
+
  
 
 let longitudeList =  markers.map(marker => {
@@ -31,9 +30,7 @@ marker.lat
   useEffect(() => {
     async function getData() {
      
-      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${longitude}&lon=${latitude}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
-
-    
+      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
 
       console.log(url);
       try {
@@ -53,7 +50,6 @@ marker.lat
     return <div>Loading indicator</div>
   }
 
-  console.log(airData)
   return (
     <div>
 
