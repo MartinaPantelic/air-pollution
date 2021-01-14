@@ -53,14 +53,7 @@ const LocationContextProvider = (props) => {
     libraries,
   });
   const [markers, setMarkers] = React.useState([]);
-  let [finalLng, setFinalLng] = React.useState(null);
-  let [finalLat, setFinalLat] = React.useState(null);
-  const [searchCoord, setSearchCoord] = React.useState({
-    lat: 12.34,
-    lng: 45.67,
-  });
-  // let [latitude, setLatitude] = React.useState(-33.7560119)
-  // let [longitude, setLongitude] = React.useState(150.6038367)
+ 
 
   const [selected, setSelected] = React.useState(null);
 
@@ -75,16 +68,12 @@ const LocationContextProvider = (props) => {
         time: new Date(),
       },
     ]);
-    setSearchCoord({
-      lat: 12.34,
-      lng: 45.67,
-    });
+    
   }, []);
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
-
 
   }, []);
 
@@ -92,13 +81,7 @@ const LocationContextProvider = (props) => {
     mapRef.current.panTo({ lat, lng });
 
     mapRef.current.setZoom(14);
-    console.log(lat, lng)
-    setFinalLng(lng)
-    setFinalLat(lat)
-    setSearchCoord({
-      lat: lat,
-      lng: lng,
-    },)
+  
     setMarkers((current) => [
       ...current,
       {
@@ -110,10 +93,7 @@ const LocationContextProvider = (props) => {
 
   }, []);
 
-console.log(searchCoord.lat)
 
-  console.log(finalLng, "ovo je finalLng")
-  console.log(finalLat, "ovo je finalLat")
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
@@ -122,7 +102,7 @@ console.log(searchCoord.lat)
   //
 
   return (
-    <LocationContext.Provider value={{ markers, searchCoord }}>
+    <LocationContext.Provider value={{ markers }}>
       <Container>
         {props.children}
 
@@ -243,7 +223,7 @@ function Search({ panTo }) {
   } = usePlacesAutocomplete({
     requestOptions: {
       location: { lat: () => 43.6532, lng: () => -79.3832 },
-      radius: 100 * 1000,
+      radius: 1000 * 1000,
     },
   });
 
@@ -268,7 +248,7 @@ function Search({ panTo }) {
     } catch (error) {
       console.log("😱 Error: ", error);
     }
-
+    
 
   };
 

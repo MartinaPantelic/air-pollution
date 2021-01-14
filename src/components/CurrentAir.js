@@ -28,15 +28,12 @@ marker.lat
   let latitude = (markers.length !== 0) ? latitudeList[latitudeList.length - 1] : marker.lat;
   
 
-  
-
-
   useEffect(() => {
     async function getData() {
      
       const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${longitude}&lon=${latitude}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
 
-      // const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${finalLng}&lon=${finalLat}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+    
 
       console.log(url);
       try {
@@ -48,17 +45,9 @@ marker.lat
      
     }
     getData()
-  }, [longitude, latitude, finalLat, finalLng])
+  }, [longitude, latitude])
 
-  console.log(
-   
-    markers.map(marker => {
-          
-    return (
-  marker.lng
-    );
-  }));
-
+  
 
   if (!airData) {
     return <div>Loading indicator</div>
@@ -67,7 +56,7 @@ marker.lat
   console.log(airData)
   return (
     <div>
-final lat from curr air {finalLat} {finalLng}
+
 <Table responsive>
   <thead>
     <tr>
