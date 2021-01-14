@@ -55,6 +55,10 @@ const LocationContextProvider = (props) => {
   const [markers, setMarkers] = React.useState([]);
   let [finalLng, setFinalLng] = React.useState(null);
   let [finalLat, setFinalLat] = React.useState(null);
+  const [searchCoord, setSearchCoord] = React.useState({
+    lat: 12.34,
+    lng: 45.67,
+  });
   // let [latitude, setLatitude] = React.useState(-33.7560119)
   // let [longitude, setLongitude] = React.useState(150.6038367)
 
@@ -71,6 +75,10 @@ const LocationContextProvider = (props) => {
         time: new Date(),
       },
     ]);
+    setSearchCoord({
+      lat: 12.34,
+      lng: 45.67,
+    });
   }, []);
 
   const mapRef = React.useRef();
@@ -87,10 +95,22 @@ const LocationContextProvider = (props) => {
     console.log(lat, lng)
     setFinalLng(lng)
     setFinalLat(lat)
+    setSearchCoord({
+      lat: lat,
+      lng: lng,
+    },)
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: lat,
+        lng: lng,
+        time: new Date(),
+      },
+    ]);
 
   }, []);
 
-
+console.log(searchCoord.lat)
 
   console.log(finalLng, "ovo je finalLng")
   console.log(finalLat, "ovo je finalLat")
@@ -102,7 +122,7 @@ const LocationContextProvider = (props) => {
   //
 
   return (
-    <LocationContext.Provider value={{ markers, finalLat, finalLng, finalLat }}>
+    <LocationContext.Provider value={{ markers, searchCoord }}>
       <Container>
         {props.children}
 
