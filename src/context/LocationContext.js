@@ -168,10 +168,6 @@ const LocationContextProvider = (props) => {
               />
             ))}
 
-
-
-
-
             {selected ? (
               <InfoWindow
                 position={{ lat: selected.lat, lng: selected.lng }}
