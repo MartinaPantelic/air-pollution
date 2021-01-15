@@ -6,10 +6,10 @@ const LocationList = props => {
     <section className="Location-list">
       <h2>Loaded Locations</h2>
       <ul>
-        {props.location.map(ig => (
-          <li key={ig.id} onClick={props.onRemoveItem.bind(this, ig.id)}>
-            <span>{ig.title}</span>
-            <span>{ig.amount}x</span>
+        {props.location.map(locationItem => (
+          <li key={locationItem.id} onClick={props.onRemoveItem.bind(this, locationItem.id)}>
+            <span>{locationItem.title}</span>
+            <span>{locationItem.amount}x</span>
           </li>
         ))}
       </ul>

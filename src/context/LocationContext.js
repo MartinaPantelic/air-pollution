@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 //
 import {
   GoogleMap,
@@ -22,7 +22,13 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import { formatRelative } from "date-fns";
-import { Container } from "react-bootstrap"
+import { Container, Button } from "react-bootstrap"
+
+
+import LocationForm from '../components/LocationForm';
+import LocationList from '../components/LocationList';
+import ListSearch from '../components/ListSearch';
+
 
 import "@reach/combobox/styles.css";
 
@@ -53,7 +59,7 @@ const LocationContextProvider = (props) => {
     libraries,
   });
   const [markers, setMarkers] = React.useState([]);
- 
+
 
   const [selected, setSelected] = React.useState(null);
 
@@ -68,23 +74,10 @@ const LocationContextProvider = (props) => {
         time: new Date(),
       },
     ]);
-    
+
   }, []);
 
-
-  // const onSaveLocation = React.useCallback((e) => {
-  //   setMarkers((current) => [
-  //     ...current,
-  //     {
-  //       lat: e.latLng.lat(),
-  //       lng: e.latLng.lng(),
-       
-  //     },
-  //   ]);
-    
-  // }, []);
-
-
+  
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -96,7 +89,7 @@ const LocationContextProvider = (props) => {
     mapRef.current.panTo({ lat, lng });
 
     mapRef.current.setZoom(14);
-  
+
     setMarkers((current) => [
       ...current,
       {
@@ -114,7 +107,49 @@ const LocationContextProvider = (props) => {
   if (!isLoaded) return "Loading...";
 
 
-  //
+  let longitudeList = markers.map(marker => {
+    return (
+      marker.lng
+    );
+  })
+
+  let latitudeList = markers.map(marker => {
+    return (
+      marker.lat
+    );
+  })
+
+
+  let longitude = longitudeList[longitudeList.length - 1];
+  let latitude = latitudeList[latitudeList.length - 1];
+
+
+  function LocationDisplay() {
+    //locationForm
+      const submitHandler = event => {
+        event.preventDefault();
+        //props.onAddLocation({ lon: longitude, lat: latitude });
+        //console.log(longitude,  latitude)
+        return(
+          <div>  location trigerred with show button {longitude} and {latitude}</div>
+        )
+      };
+    
+      return (
+        <div>
+        <form onSubmit={submitHandler}>
+            <Button type="submit">
+              show location
+            </Button>
+    {/* <div>  location trigerred with show button {longitude} and {latitude}</div> */}
+        </form>
+      
+        </div>
+      )
+    }
+    
+
+
 
   return (
     <LocationContext.Provider value={{ markers }}>
@@ -123,17 +158,23 @@ const LocationContextProvider = (props) => {
 
         {/* google map */}
         <div className="container">
-          {}
+          { }
           <h1>
-            Bears{" "}
+            {/* Bears{" "}
             <span role="img" aria-label="tent">
               ⛺️
-        </span>
+        </span> */}
 
+
+koordinate iz locationcontexta {longitude} {latitude}
 
           </h1>
 
-          <Locate panTo={panTo}  />
+      
+          <LocationDisplay longitude={longitude} latitude={latitude} onClick={onMapClick} />  
+       
+          <AddLocation />
+          <Locate panTo={panTo} />
 
           <Search panTo={panTo} />
 
@@ -202,7 +243,7 @@ const LocationContextProvider = (props) => {
 function Locate({ panTo }) {
 
   return (
-    <button
+    <Button
       className="locate"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
@@ -212,15 +253,15 @@ function Locate({ panTo }) {
               lng: (position.coords.longitude),
             });
           },
-          
+
           () => null
-          
+
         );
-      
+
       }}
     >
-      <img src="/compass.svg" alt="compass" />
-    </button>
+      compass
+    </Button>
 
   );
 }
@@ -261,7 +302,7 @@ function Search({ panTo }) {
     } catch (error) {
       console.log("😱 Error: ", error);
     }
-    
+
 
   };
 
@@ -289,5 +330,60 @@ function Search({ panTo }) {
     </div>
   );
 }
+
+
+const AddLocation = () => {
+  const [userLocation, setUserLocation] = useState([]);
+
+
+  useEffect(() => {
+  console.log('RENDER Location', userLocation);
+  }, [userLocation]);
+
+  const filteredLocationHandler = useCallback(filteredLocation => {
+    setUserLocation(filteredLocation);
+  }, []);
+
+  const addLocationHandler = Location => {
+    fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json', {
+      method: 'POST',
+      body: JSON.stringify(Location),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(responseData => {
+        setUserLocation(prevLocation => [
+          ...prevLocation,
+          { id: responseData.name, ...Location }
+        ]);
+      });
+  };
+
+  const removeLocationHandler = locationId => {
+    setUserLocation(prevLocation =>
+      prevLocation.filter(location => location.id !== locationId)
+    );
+  };
+
+  return (
+    <div className="App">
+      <LocationForm onAddLocation={addLocationHandler} />
+
+
+      <section>
+        <ListSearch onLoadLocations={filteredLocationHandler}/>
+        <LocationList
+          location={userLocation}
+          onRemoveItem={removeLocationHandler}
+        />
+      </section>
+    </div>
+  );
+};
+
+
+
 
 export default LocationContextProvider;

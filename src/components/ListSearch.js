@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card } from "react-bootstrap";
 
-const Search = React.memo(props => {
+const ListSearch = React.memo(props => {
   const { onLoadLocations } = props;
   const [enteredFilter, setEnteredFilter] = useState('');
   const inputRef = useRef();
@@ -50,4 +50,4 @@ const Search = React.memo(props => {
   );
 });
 
-export default Search;
+export default ListSearch;
