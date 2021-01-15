@@ -17,7 +17,7 @@ const AddLocation = () => {
   }, []);
 
   const addLocationHandler = Location => {
-    fetch('https://react-hooks-update-c8ad3-default-rtdb.firebaseio.com/ingredients.json', {
+    fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/ingredients.json', {
       method: 'POST',
       body: JSON.stringify(Location),
       headers: { 'Content-Type': 'application/json' }

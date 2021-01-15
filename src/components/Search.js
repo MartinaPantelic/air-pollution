@@ -12,7 +12,7 @@ const Search = React.memo(props => {
         const query = enteredFilter.length === 0
         ? ''
         : `?orderBy="title"&equalTo="${enteredFilter}"`;
-      fetch('https://react-hooks-update-c8ad3-default-rtdb.firebaseio.com/ingredients.json' + query)
+      fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/ingredients.json' + query)
         .then(response => response.json())
         .then(responseData => {
           const loadedLocations = [];
