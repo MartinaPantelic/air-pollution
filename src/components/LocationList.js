@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-const IngredientList = props => {
+const LocationList = props => {
   return (
-    <section className="ingredient-list">
-      <h2>Loaded Ingredients</h2>
+    <section className="Location-list">
+      <h2>Loaded Locations</h2>
       <ul>
-        {props.ingredients.map(ig => (
+        {props.location.map(ig => (
           <li key={ig.id} onClick={props.onRemoveItem.bind(this, ig.id)}>
             <span>{ig.title}</span>
             <span>{ig.amount}x</span>
@@ -17,4 +17,4 @@ const IngredientList = props => {
   );
 };
 
-export default IngredientList;
+export default LocationList;

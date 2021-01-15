@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import { Card } from "react-bootstrap";
 
 
-const IngredientForm = React.memo(props => {
+const LocationForm = React.memo(props => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
 
   const submitHandler = event => {
     event.preventDefault();
-    props.onAddIngredient({ title: enteredTitle, amount: enteredAmount });
+    props.onAddLocation({ title: enteredTitle, amount: enteredAmount });
   };
 
   return (
-    <section className="ingredient-form">
+    <section className="location-form">
       <Card>
         <form onSubmit={submitHandler}>
           <div className="form-control">
@@ -38,8 +38,8 @@ const IngredientForm = React.memo(props => {
               }}
             />
           </div>
-          <div className="ingredient-form__actions">
-            <button type="submit">Add Ingredient</button>
+          <div className="Location-form__actions">
+            <button type="submit">Add Location</button>
           </div>
         </form>
       </Card>
@@ -47,4 +47,4 @@ const IngredientForm = React.memo(props => {
   );
 });
 
-export default IngredientForm;
+export default LocationForm;

@@ -7,7 +7,7 @@ import Login from "./Login"
 import Dashboard from './Dashboard'
 import PrivateRoute from "./PrivateRoute"
 import SignUp from "./SignUp"
-import Ingredients from './Ingredients';
+import AddLocation from './AddLocation';
 import { AuthProvider } from "../context/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
@@ -20,7 +20,7 @@ export default function App() {
       <AuthProvider>
         <div className="App">
           {/* <CurrentAir api={airData} /> */}
-          <Ingredients />
+          <AddLocation />
 
           <Navigation />
 

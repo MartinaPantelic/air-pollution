@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Card } from "react-bootstrap";
 
 const Search = React.memo(props => {
-  const { onLoadIngredients } = props;
+  const { onLoadLocations } = props;
   const [enteredFilter, setEnteredFilter] = useState('');
   const inputRef = useRef();
 
@@ -15,15 +15,15 @@ const Search = React.memo(props => {
       fetch('https://react-hooks-update-c8ad3-default-rtdb.firebaseio.com/ingredients.json' + query)
         .then(response => response.json())
         .then(responseData => {
-          const loadedIngredients = [];
+          const loadedLocations = [];
           for (const key in responseData) {
-            loadedIngredients.push({
+            loadedLocations.push({
               id: key,
               title: responseData[key].title,
               amount: responseData[key].amount
             });
           }
-          onLoadIngredients(loadedIngredients);
+          onLoadLocations(loadedLocations);
         });
       }
  
@@ -32,7 +32,7 @@ const Search = React.memo(props => {
       clearTimeout(timer);
     };
 
-  }, [enteredFilter, onLoadIngredients, inputRef]);
+  }, [enteredFilter, onLoadLocations, inputRef]);
 
   return (
     <section className="search">
