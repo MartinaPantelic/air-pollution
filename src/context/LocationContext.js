@@ -1,3 +1,4 @@
+  
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 //
 import {
@@ -171,9 +172,9 @@ koordinate iz locationcontexta {longitude} {latitude}
           </h1>
 
       
-          <LocationDisplay longitude={longitude} latitude={latitude} onClick={onMapClick} />  
+        
        
-          <AddLocation />
+          <AddLocation longitude={longitude} latitude={latitude}/>
           <Locate panTo={panTo} />
 
           <Search panTo={panTo} />
@@ -332,7 +333,16 @@ function Search({ panTo }) {
 }
 
 
-const AddLocation = () => {
+const AddLocation = ({ longitude, latitude }) => {
+
+  //
+  const submitHandler = event => {
+    event.preventDefault();
+    addLocationHandler({ lon: longitude, lat: latitude });
+    console.log(longitude)
+  };
+
+  //
   const [userLocation, setUserLocation] = useState([]);
 
 
@@ -369,7 +379,7 @@ const AddLocation = () => {
 
   return (
     <div className="App">
-      <LocationForm onAddLocation={addLocationHandler} />
+      {/* <LocationForm onAddLocation={addLocationHandler} /> */}
 
 
       <section>
@@ -378,6 +388,11 @@ const AddLocation = () => {
           location={userLocation}
           onRemoveItem={removeLocationHandler}
         />
+         <div className="Location-form__actions">
+         <form onSubmit={submitHandler}>
+            <button type="submit" >Add Location</button>
+            </form>
+          </div>
       </section>
     </div>
   );
