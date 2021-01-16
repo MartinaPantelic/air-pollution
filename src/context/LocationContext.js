@@ -26,7 +26,7 @@ import { formatRelative } from "date-fns";
 import { Container, Button } from "react-bootstrap"
 
 
-import LocationForm from '../components/LocationForm';
+
 import LocationList from '../components/LocationList';
 import ListSearch from '../components/ListSearch';
 
@@ -125,30 +125,6 @@ const LocationContextProvider = (props) => {
   let latitude = latitudeList[latitudeList.length - 1];
 
 
-  function LocationDisplay() {
-    //locationForm
-      const submitHandler = event => {
-        event.preventDefault();
-        //props.onAddLocation({ lon: longitude, lat: latitude });
-        //console.log(longitude,  latitude)
-        return(
-          <div>  location trigerred with show button {longitude} and {latitude}</div>
-        )
-      };
-    
-      return (
-        <div>
-        <form onSubmit={submitHandler}>
-            <Button type="submit">
-              show location
-            </Button>
-    {/* <div>  location trigerred with show button {longitude} and {latitude}</div> */}
-        </form>
-      
-        </div>
-      )
-    }
-    
 
 
 
@@ -335,15 +311,14 @@ function Search({ panTo }) {
 
 const AddLocation = ({ longitude, latitude }) => {
 
-  //
+  const [userLocation, setUserLocation] = useState([]);
+
+
   const submitHandler = event => {
     event.preventDefault();
     addLocationHandler({ lon: longitude, lat: latitude });
-    console.log(longitude)
+    console.log(userLocation)
   };
-
-  //
-  const [userLocation, setUserLocation] = useState([]);
 
 
   useEffect(() => {
@@ -353,25 +328,27 @@ const AddLocation = ({ longitude, latitude }) => {
   const filteredLocationHandler = useCallback(filteredLocation => {
     setUserLocation(filteredLocation);
   }, []);
-
-  const addLocationHandler = Location => {
+console.log(userLocation)
+  const addLocationHandler = location => {
     fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json', {
       method: 'POST',
-      body: JSON.stringify(Location),
+      body: JSON.stringify(location),
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => {
         return response.json();
       })
       .then(responseData => {
+        console.log(responseData)
         setUserLocation(prevLocation => [
           ...prevLocation,
-          { id: responseData.name, ...Location }
+          { id: responseData.name, ...location }
         ]);
       });
   };
 
   const removeLocationHandler = locationId => {
+    console.log("kao radi")
     setUserLocation(prevLocation =>
       prevLocation.filter(location => location.id !== locationId)
     );

@@ -12,19 +12,19 @@ const ListSearch = React.memo(props => {
         const query = enteredFilter.length === 0
         ? ''
         : `?orderBy="title"&equalTo="${enteredFilter}"`;
-      // fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json' + query)
-      //   .then(response => response.json())
-      //   .then(responseData => {
-      //     const loadedLocations = [];
-      //     for (const key in responseData) {
-      //       loadedLocations.push({
-      //         id: key,
-      //         title: responseData[key].title,
-      //         amount: responseData[key].amount
-      //       });
-      //     }
-      //     onLoadLocations(loadedLocations);
-      //   });
+      fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json' + query)
+        .then(response => response.json())
+        .then(responseData => {
+          const loadedLocations = [];
+          for (const key in responseData) {
+            loadedLocations.push({
+              id: key,
+              lon: responseData[key].lon,
+              lat: responseData[key].lat
+            });
+          }
+          onLoadLocations(loadedLocations);
+        });
       }
  
     }, 500);
