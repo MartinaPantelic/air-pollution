@@ -1,6 +1,5 @@
-  
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-//
+
 import {
   GoogleMap,
   useLoadScript,
@@ -78,7 +77,7 @@ const LocationContextProvider = (props) => {
 
   }, []);
 
-  
+
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -127,9 +126,6 @@ const LocationContextProvider = (props) => {
   let latitude = latitudeList[latitudeList.length - 1];
 
 
-
-
-
   return (
     <LocationContext.Provider value={{ markers }}>
       <Container>
@@ -149,10 +145,9 @@ koordinate iz locationcontexta {longitude} {latitude}
 
           </h1>
 
-      
-        
-       
-          <AddLocation longitude={longitude} latitude={latitude}/>
+
+
+          <AddLocation longitude={longitude} latitude={latitude} />
           <Locate panTo={panTo} />
 
           <Search panTo={panTo} />
@@ -277,9 +272,9 @@ function Search({ panTo }) {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
-     
+
       panTo({ lat, lng });
-     
+
 
 
     } catch (error) {
@@ -290,7 +285,7 @@ function Search({ panTo }) {
 
   return (
     <div className="search">
-      
+
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
           value={value}
@@ -313,7 +308,9 @@ function Search({ panTo }) {
 
 
 const AddLocation = ({ longitude, latitude }) => {
-  
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
   const [userLocation, setUserLocation] = useState([]);
 
@@ -321,18 +318,17 @@ const AddLocation = ({ longitude, latitude }) => {
   const submitHandler = event => {
     event.preventDefault();
     addLocationHandler({ lon: longitude, lat: latitude });
-    console.log(userLocation)
+
   };
 
-
   useEffect(() => {
-  console.log('RENDER Location', userLocation);
+    console.log('RENDER Location', userLocation);
   }, [userLocation]);
 
   const filteredLocationHandler = useCallback(filteredLocation => {
     setUserLocation(filteredLocation);
   }, []);
-console.log(userLocation)
+
   const addLocationHandler = location => {
     fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json', {
       method: 'POST',
@@ -352,28 +348,37 @@ console.log(userLocation)
   };
 
   const removeLocationHandler = locationId => {
-    console.log("kao radi")
-    setUserLocation(prevLocation =>
-      prevLocation.filter(location => location.id !== locationId)
-    );
+    setIsLoading(true);
+    fetch(
+      `https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations/${locationId}.json`,
+      {
+        method: 'DELETE'
+      }
+    ).then(response => {
+      setIsLoading(false);
+      setUserLocation(prevLocation =>
+        prevLocation.filter(location => location.id !== locationId)
+      );
+    }).catch(error => {
+      setError('Something went wrong!');
+      setIsLoading(false);
+    });
   };
 
   return (
     <div className="App">
-      {/* <LocationForm onAddLocation={addLocationHandler} /> */}
-
 
       <section>
-        <ListSearch onLoadLocations={filteredLocationHandler}/>
+        <ListSearch onLoadLocations={filteredLocationHandler} />
         <LocationList
           location={userLocation}
           onRemoveItem={removeLocationHandler}
         />
-         <div className="Location-form__actions">
-         <form onSubmit={submitHandler}>
+        <div className="Location-form__actions">
+          <form onSubmit={submitHandler}>
             <button type="submit" >Add Location</button>
-            </form>
-          </div>
+          </form>
+        </div>
       </section>
     </div>
   );

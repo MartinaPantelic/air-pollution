@@ -10,23 +10,23 @@ const ListSearch = React.memo(props => {
     const timer = setTimeout(() => {
       if (enteredFilter === inputRef.current.value) {
         const query = enteredFilter.length === 0
-        ? ''
-        : `?orderBy="title"&equalTo="${enteredFilter}"`;
-      fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json' + query)
-        .then(response => response.json())
-        .then(responseData => {
-          const loadedLocations = [];
-          for (const key in responseData) {
-            loadedLocations.push({
-              id: key,
-              lon: responseData[key].lon,
-              lat: responseData[key].lat
-            });
-          }
-          onLoadLocations(loadedLocations);
-        });
+          ? ''
+          : `?orderBy="title"&equalTo="${enteredFilter}"`;
+        fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json' + query)
+          .then(response => response.json())
+          .then(responseData => {
+            const loadedLocations = [];
+            for (const key in responseData) {
+              loadedLocations.push({
+                id: key,
+                lon: responseData[key].lon,
+                lat: responseData[key].lat
+              });
+            }
+            onLoadLocations(loadedLocations);
+          });
       }
- 
+
     }, 500);
     return () => {
       clearTimeout(timer);
@@ -40,10 +40,10 @@ const ListSearch = React.memo(props => {
         <div className="search-input">
           <label>Filter by Title</label>
           <input
-          ref = {inputRef} 
-          type="text" 
-          value={enteredFilter}
-          onChange={event => setEnteredFilter(event.target.value)} />
+            ref={inputRef}
+            type="text"
+            value={enteredFilter}
+            onChange={event => setEnteredFilter(event.target.value)} />
         </div>
       </Card>
     </section>

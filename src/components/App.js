@@ -7,7 +7,6 @@ import Login from "./Login"
 import Dashboard from './Dashboard'
 import PrivateRoute from "./PrivateRoute"
 import SignUp from "./SignUp"
-import AddLocation from './AddLocation';
 import { AuthProvider } from "../context/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
@@ -20,7 +19,7 @@ export default function App() {
       <AuthProvider>
         <div className="App">
           {/* <CurrentAir api={airData} /> */}
-          <AddLocation />
+
 
           <Navigation />
 
@@ -28,14 +27,14 @@ export default function App() {
 
         <Switch>
           <Route path='/location' component={LocationPicker} />
-          
+
 
           <PrivateRoute exact path="/" component={Dashboard} />
-                            <PrivateRoute path="/update-profile" component={UpdateProfile} />
-                            <Route exact path="/login" component={Login} />
-                            <Route path="/signup" component={SignUp} />
-                            <Route path="/forgot-password" component={ForgotPassword} />
-       
+          <PrivateRoute path="/update-profile" component={UpdateProfile} />
+          <Route exact path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+
         </Switch>
 
       </AuthProvider>
