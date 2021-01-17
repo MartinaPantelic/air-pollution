@@ -84,6 +84,8 @@ const LocationContextProvider = (props) => {
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
 
+    console.log(map)
+
   }, []);
 
   const panTo = React.useCallback(({ lat, lng }) => {
@@ -243,6 +245,8 @@ function Locate({ panTo }) {
   );
 }
 
+
+
 function Search({ panTo }) {
 
   const {
@@ -269,25 +273,24 @@ function Search({ panTo }) {
   const handleSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
+    console.log(address)
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
+     
       panTo({ lat, lng });
-
+     
 
 
     } catch (error) {
       console.log("😱 Error: ", error);
     }
 
-
   };
-
-
-
 
   return (
     <div className="search">
+      
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
           value={value}
@@ -310,6 +313,7 @@ function Search({ panTo }) {
 
 
 const AddLocation = ({ longitude, latitude }) => {
+  
 
   const [userLocation, setUserLocation] = useState([]);
 
