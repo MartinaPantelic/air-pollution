@@ -8,13 +8,14 @@ import Dashboard from './Dashboard'
 import PrivateRoute from "./PrivateRoute"
 import SignUp from "./SignUp"
 import { AuthProvider } from "../context/AuthContext"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom"
 
 
 
 export default function App() {
 
   return (
+    <BrowserRouter>
     <Router>
       <AuthProvider>
         <div className="App">
@@ -39,6 +40,7 @@ export default function App() {
 
       </AuthProvider>
     </Router>
+    </BrowserRouter>
 
   )
 }

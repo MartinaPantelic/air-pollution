@@ -9,7 +9,8 @@ const LocationList = props => {
         {props.location.map(locationItem => (
           <li key={locationItem.id} onClick={props.onRemoveItem.bind(this, locationItem.id)}>
             <div>{locationItem.lon}</div>
-            <div>{locationItem.lat}x</div>
+            <div>{locationItem.lat}</div>
+            <div>{locationItem.place}</div>
           </li>
         ))}
       </ul>

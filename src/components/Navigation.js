@@ -1,11 +1,8 @@
 import React, { useState } from "react"
-import { Button } from "react-bootstrap"
+import { Button, Navbar } from "react-bootstrap"
 
 import { useAuth } from "../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
-
-
-
 
 const Navigation = props => {
   const [error, setError] = useState("")
@@ -24,21 +21,23 @@ const Navigation = props => {
   }
   return (
 
-    <div className="menu-items">
-      <ul>
-      <li><Link className="menu-link" exact="true" to="/">Dashboard</Link></li>
-        <li><Link className="menu-link" exact="true" to="/location">Location</Link></li>
-        <li><Link className="menu-link" exact="true" to="/current-air">Current Air</Link></li>
-        <li><Link className="menu-link" exact="true" to="/update-profile">Update Profile</Link></li>
-        <li><Link className="menu-link" exact="true" to="/login">Log In</Link></li>
-        <li><Link className="menu-link" exact="true" to="/signup">Sign Up</Link></li>
-        <li><Link className="menu-link" exact="true" to="/forgot-password">Forgot Pass</Link></li>
-        <li>  <Button variant="link" onClick={handleLogout}>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="#home">Air App</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Link className="nav-link" exact="true" to="/">Dashboard</Link>
+        <Link className="nav-link" exact="true" to="/location"> Location</Link>
+        <Link className="nav-link" exact="true" to="/current-air">Current Air</Link>
+        <Link className="nav-link" exact="true" to="/update-profile">Update Profile</Link>
+        <Link className="nav-link" exact="true" to="/login">Log In</Link>
+        <Link className="nav-link" exact="true" to="/signup">Sign Up</Link>
+        <Link className="nav-link" exact="true" to="/forgot-password">Forgot Password</Link>
+        <Button variant="link" onClick={handleLogout}>
           Log Out
         </Button>
-</li>
-      </ul>
-    </div>
+
+      </Navbar.Collapse>
+    </Navbar>
 
   );
 };

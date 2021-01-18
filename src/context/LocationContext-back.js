@@ -183,7 +183,7 @@ koordinate iz locationcontexta {longitude} {latitude}
                   
                 }}
                 icon={{
-                 // url: `/bear.svg`,
+                  url: `/bear.svg`,
                   origin: new window.google.maps.Point(0, 0),
                   anchor: new window.google.maps.Point(15, 15),
                   scaledSize: new window.google.maps.Size(30, 30),
@@ -202,9 +202,9 @@ koordinate iz locationcontexta {longitude} {latitude}
                   {selected.lat}
                   {selected.lng}
                   <h2>
-                    {/* <span role="img" aria-label="bear">
+                    <span role="img" aria-label="bear">
                       🐻
-                </span>{" "} */}
+                </span>{" "}
                     <div><span>AQI: </span>
                       {/* {airData.list[0].main.aqi} */}
                     </div>
@@ -326,7 +326,7 @@ const AddLocation = ({ longitude, latitude }) => {
 
   const submitHandler = event => {
     event.preventDefault();
-    addLocationHandler({ lon: longitude, lat: latitude, place: placeName });
+    addLocationHandler({ lon: longitude, lat: latitude });
 
   };
 
