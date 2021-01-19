@@ -71,3 +71,11 @@ ul, li {
   .custom-tooltip:hover .tooltiptext {
     visibility: visible;
   }
+  /* .button-link, .button-link:hover {
+      color: #fff;
+      text-decoration: none;
+  } */
+  .btn-outline-primary:hover .button-link, .button-link:hover {
+    color: #fff;
+    text-decoration: none;
+}

@@ -10,7 +10,6 @@ export default function LinkForecastAir() {
     <>
     <div>
     <DisplayForecast/>
-    <Link className="nav-link" exact="true" to="/current-air">Current</Link>
     </div>
       
     
