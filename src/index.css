@@ -20,21 +20,54 @@ ul, li {
     width: 20px;
     height: 20px;
 }
+
+.delete-icon {
+    background: url('./img/close.svg') no-repeat center;
+    background-size: 15px;
+    display: block;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+.delete-icon:hover {
+    background-size: 18px;
+}
 .search-input-filter {
     visibility: hidden;
 }
-.location-list span {
-    visibility: hidden;
-    height: 0;
-    margin: 0;
-    line-height: 0;
-    display: none;
-   
-}
+
 .list-group-item {
     cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
 }
 .locate-btn {
     display: flex;
     align-items: center;
 }
+
+.custom-tooltip {
+    position: relative;
+    width: 100%;
+    color: #000;
+  }
+  
+  .custom-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+   
+    color: #59a9ff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+  
+    /* Position the tooltip */
+   margin-left: 10px;
+    z-index: 1;
+  }
+  .custom-tooltip:hover {
+    color: #000;
+    text-decoration: none;
+  }
+  .custom-tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
