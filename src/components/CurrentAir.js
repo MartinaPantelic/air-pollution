@@ -82,10 +82,6 @@ marker.lat
   </tbody>
 </Table>
  
-      <div>{airData.coord.lon}</div>
-      <div>{marker.lon}</div>
-      <div>{longitude}</div>
-      <div>{airData.list[0].components.co}</div>
 
     </div>
 

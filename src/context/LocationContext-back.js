@@ -147,8 +147,6 @@ const LocationContextProvider = (props) => {
         </span> */}
 
 
-koordinate iz locationcontexta {longitude} {latitude}
-
           </h1>
 
 

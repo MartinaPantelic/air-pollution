@@ -3,8 +3,7 @@ import { Card } from "react-bootstrap"
 
 
 export default function Dashboard() {
- 
- 
+  
 
   return (
     <>
@@ -13,6 +12,7 @@ export default function Dashboard() {
         <h1>
           Fetching Data with React Hooks
         </h1>
+     
         </Card.Body>
       </Card>
      

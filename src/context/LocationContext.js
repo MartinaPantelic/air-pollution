@@ -140,18 +140,6 @@ const LocationContextProvider = (props) => {
         {/* google map */}
         <div className="container">
           { }
-          <h1>
-            {/* Bears{" "}
-            <span role="img" aria-label="tent">
-              ⛺️
-        </span> */}
-
-
-koordinate iz locationcontexta {longitude} {latitude}
-
-          </h1>
-
-
 
           <AddLocation longitude={longitude} latitude={latitude} />
           <Locate panTo={panTo} />
@@ -183,7 +171,7 @@ koordinate iz locationcontexta {longitude} {latitude}
                   
                 }}
                 icon={{
-                 // url: `/bear.svg`,
+                  url: `/bear.svg`,
                   origin: new window.google.maps.Point(0, 0),
                   anchor: new window.google.maps.Point(15, 15),
                   scaledSize: new window.google.maps.Size(30, 30),
@@ -192,26 +180,24 @@ koordinate iz locationcontexta {longitude} {latitude}
             ))}
 
             {selected ? (
-              <InfoWindow
-                position={{ lat: selected.lat, lng: selected.lng }}
-                onCloseClick={() => {
-                  setSelected(null);
-                }}
-              >
-                <div>
-                  {selected.lat}
-                  {selected.lng}
-                  <h2>
-                    {/* <span role="img" aria-label="bear">
-                      🐻
-                </span>{" "} */}
-                    <div><span>AQI: </span>
-                      {/* {airData.list[0].main.aqi} */}
-                    </div>
-                  </h2>
-                  <p>Spotted {formatRelative(selected.time, new Date())}</p>
-                </div>
-              </InfoWindow>
+             <InfoWindow
+             position={{ lat: selected.lat, lng: selected.lng }}
+             onCloseClick={() => {
+               setSelected(null);
+             }}
+           >
+             <div>
+               {selected.lat}
+               {selected.lng}
+               <h2>
+                
+                 <div><span>AQI: </span>
+                   {/* {airData.list[0].main.aqi} */}
+                 </div>
+               </h2>
+               <p>Spotted {formatRelative(selected.time, new Date())}</p>
+             </div>
+           </InfoWindow>
             ) : null}
           </GoogleMap>
         </div>

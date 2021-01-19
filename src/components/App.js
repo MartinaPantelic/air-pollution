@@ -8,7 +8,12 @@ import Dashboard from './Dashboard'
 import PrivateRoute from "./PrivateRoute"
 import SignUp from "./SignUp"
 import { AuthProvider } from "../context/AuthContext"
+
+import LinkCurrAir from "./LinkCurrAir"
+import LinkForecastAir from "./LinkForecastAir"
+
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom"
+
 
 
 
@@ -19,15 +24,15 @@ export default function App() {
     <Router>
       <AuthProvider>
         <div className="App">
-          {/* <CurrentAir api={airData} /> */}
-
-
           <Navigation />
 
         </div>
 
         <Switch>
           <Route path='/location' component={LocationPicker} />
+          <Route path='/current-air' component={LinkCurrAir} />
+          <Route path='/forecast-air' component={LinkForecastAir} />
+
 
 
           <PrivateRoute exact path="/" component={Dashboard} />

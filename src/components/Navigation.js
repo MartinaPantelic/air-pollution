@@ -25,9 +25,10 @@ const Navigation = props => {
       <Navbar.Brand href="#home">Air App</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
+        <Link className="nav-link" exact="true" to="/current-air">Current Air</Link>
+        <Link className="nav-link" exact="true" to="/forecast-air">Forecast Air</Link>
         <Link className="nav-link" exact="true" to="/">Dashboard</Link>
         <Link className="nav-link" exact="true" to="/location"> Location</Link>
-        <Link className="nav-link" exact="true" to="/current-air">Current Air</Link>
         <Link className="nav-link" exact="true" to="/update-profile">Update Profile</Link>
         <Link className="nav-link" exact="true" to="/login">Log In</Link>
         <Link className="nav-link" exact="true" to="/signup">Sign Up</Link>
