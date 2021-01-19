@@ -1,15 +1,10 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow
-
 } from "@react-google-maps/api";
-
-
-
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -23,17 +18,10 @@ import {
 } from "@reach/combobox";
 import { formatRelative } from "date-fns";
 import { Container, Button } from "react-bootstrap"
-
-
-
 import LocationList from '../components/LocationList';
 import ListSearch from '../components/ListSearch';
-
-
 import "@reach/combobox/styles.css";
-
 export const LocationContext = createContext();
-
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "50vh",
@@ -48,23 +36,13 @@ const center = {
   lat: 43.6532,
   lng: -79.3832,
 };
-
-
-
-
 const LocationContextProvider = (props) => {
-
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
   const [markers, setMarkers] = React.useState([]);
-
-
   const [selected, setSelected] = React.useState(null);
-
-
-
   const onMapClick = React.useCallback((e) => {
   
     setMarkers((current) => [
@@ -80,22 +58,14 @@ const LocationContextProvider = (props) => {
     
     
     
-
   }, []);
-
-
-
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
-
     console.log(map)
-
   }, []);
-
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-
     mapRef.current.setZoom(14);
    
     setMarkers((current) => [
@@ -106,46 +76,31 @@ const LocationContextProvider = (props) => {
         time: new Date(),
       },
     ]);
-
   }, []);
-
-
-
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
-
-
   let longitudeList = markers.map(marker => {
     return (
       marker.lng
     );
   })
-
   let latitudeList = markers.map(marker => {
     return (
       marker.lat
     );
   })
-
-
   let longitude = longitudeList[longitudeList.length - 1];
   let latitude = latitudeList[latitudeList.length - 1];
-
-
   return (
     <LocationContext.Provider value={{ markers }}>
       <Container>
         {props.children}
-
         {/* google map */}
         <div className="container">
           { }
-
           <AddLocation longitude={longitude} latitude={latitude} />
           <Locate panTo={panTo} />
-
           <Search panTo={panTo} />
-
           <GoogleMap
             id="map"
             mapContainerStyle={mapContainerStyle}
@@ -155,12 +110,8 @@ const LocationContextProvider = (props) => {
             onClick={onMapClick}
             onLoad={onMapLoad}
             render={({
-
-
             })}
-
           >
-
             {markers.map((marker) => (
               <Marker
                 key={`${marker.lat}-${marker.lng}`}
@@ -178,7 +129,6 @@ const LocationContextProvider = (props) => {
                 }}
               />
             ))}
-
             {selected ? (
              <InfoWindow
              position={{ lat: selected.lat, lng: selected.lng }}
@@ -201,15 +151,11 @@ const LocationContextProvider = (props) => {
             ) : null}
           </GoogleMap>
         </div>
-
       </Container>
     </LocationContext.Provider>
   )
 }
-
-
 function Locate({ panTo }) {
-
   return (
     <Button
       className="locate"
@@ -221,23 +167,15 @@ function Locate({ panTo }) {
               lng: (position.coords.longitude),
             });
           },
-
           () => null
-
         );
-
       }}
     >
       compass
     </Button>
-
   );
 }
-
-
-
 function Search({ panTo }) {
-
   const {
     ready,
     value,
@@ -250,15 +188,10 @@ function Search({ panTo }) {
       radius: 1000 * 1000,
     },
   });
-
-
-
   // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
-
   const handleInput = (e) => {
     setValue(e.target.value);
   };
-
   const handleSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
@@ -268,18 +201,12 @@ function Search({ panTo }) {
       const { lat, lng } = await getLatLng(results[0]);
       console.log(results[0].address_components[0].long_name)
       panTo({ lat, lng });
-
-
-
     } catch (error) {
-      console.log("😱 Error: ", error);
+      console.log(":scream: Error: ", error);
     }
-
   };
-
   return (
     <div className="search">
-
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
           value={value}
@@ -299,33 +226,23 @@ function Search({ panTo }) {
     </div>
   );
 }
-
-
 const AddLocation = ({ longitude, latitude }) => {
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-
   const [userLocation, setUserLocation] = useState([]);
-  const [placeName, setPlaceName] = useState(null)
-
-
-  const submitHandler = event => {
+  
+  const submitHandler = async (event) => {
     event.preventDefault();
-    addLocationHandler({ lon: longitude, lat: latitude, place: placeName });
-
+     await getplaceName(latitude, longitude).then( place =>{
+      addLocationHandler({ lon: longitude, lat: latitude, place: place });   
+     })
   };
-
   useEffect(() => {
     console.log('RENDER Location', userLocation);
   }, [userLocation]);
-
   const filteredLocationHandler = useCallback(filteredLocation => {
     setUserLocation(filteredLocation);
   }, []);
-
-
-
   async function getplaceName(lat, lng) {
     try {
       const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`);
@@ -334,21 +251,17 @@ const AddLocation = ({ longitude, latitude }) => {
       if (data.results.length > 0) {
         console.log("ima nesto!!!")
         console.log(data.results[0].address_components[4].long_name)
-        setPlaceName(data.results[0].address_components[4].long_name)
+        return data.results[0].address_components[4].long_name
+        //setPlaceName(data.results[0].address_components[4].long_name)
       }
       else {
         console.log("NEMA NISTA!!!!")
-        setPlaceName("Unknown Location")
+        return "Unknown Location";
       }
-
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(placeName)
-
-
-
   const addLocationHandler = location => {
     fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json', {
       method: 'POST',
@@ -356,9 +269,8 @@ const AddLocation = ({ longitude, latitude }) => {
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => {
-        getplaceName(latitude, longitude)
+       
         return response.json();
-
       })
       .then(responseData => {
         console.log(responseData)
@@ -368,7 +280,6 @@ const AddLocation = ({ longitude, latitude }) => {
         ]);
       });
   };
-
   const removeLocationHandler = locationId => {
     setIsLoading(true);
     fetch(
@@ -386,10 +297,8 @@ const AddLocation = ({ longitude, latitude }) => {
       setIsLoading(false);
     });
   };
-
   return (
     <div className="App">
-
       <section>
         <ListSearch onLoadLocations={filteredLocationHandler} />
         <LocationList
@@ -405,8 +314,4 @@ const AddLocation = ({ longitude, latitude }) => {
     </div>
   );
 };
-
-
-
-
 export default LocationContextProvider;
