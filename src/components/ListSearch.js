@@ -40,9 +40,9 @@ const ListSearch = React.memo(props => {
   //[enteredFilter, onLoadLocations, inputRef]);
 
   return (
-    <section className="search">
+    <section className="search search-input-filter">
       <Card>
-        <div className="search-input">
+        <div className="search-input-filter">
           {/* <label>Filter by Title</label>
           <input
             ref={inputRef}

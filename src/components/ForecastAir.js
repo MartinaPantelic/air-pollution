@@ -67,7 +67,7 @@ function ForecastAir() {
   }
 
   return (
-    <div>
+    <div className="mb-5">
 
       <Table responsive>
         <thead>
@@ -108,10 +108,6 @@ function ForecastAir() {
         </tbody>
       </Table>
 
-      {/* <div>{airData.coord.lon}</div>
-      <div>{airData.list[0].main.aqi}</div>
-      <div>{longitude}</div>
-      <div>{airData.list[0].components.co}</div> */}
 
     </div>
 

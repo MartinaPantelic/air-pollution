@@ -3,7 +3,7 @@ import React from 'react';
 
 const LocationList = props => {
   return (
-    <section className="location-list list-group">
+    <section className="location-list list-group mb-3">
       <h3 className="locations-title mb-3">My Locations</h3>
       <ul>
         {props.location.map(locationItem => (

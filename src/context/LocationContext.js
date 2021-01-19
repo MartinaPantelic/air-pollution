@@ -33,8 +33,8 @@ const options = {
   zoomControl: true,
 };
 const center = {
-  lat: 43.6532,
-  lng: -79.3832,
+  lat: 35.9940329,
+  lng: -78.898619,
 };
 const LocationContextProvider = (props) => {
   const { isLoaded, loadError } = useLoadScript({
@@ -158,7 +158,7 @@ const LocationContextProvider = (props) => {
 function Locate({ panTo }) {
   return (
     <Button
-      className="locate"
+      className="locate-btn mb-3"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -171,6 +171,7 @@ function Locate({ panTo }) {
         );
       }}
     >
+      <span className="compass-icon"></span>
       Locate me
     </Button>
   );
@@ -209,6 +210,7 @@ function Search({ panTo }) {
     <div className="search">
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
+          className="form-control mb-3 float-left"
           value={value}
           onChange={handleInput}
           disabled={!ready}
@@ -250,8 +252,8 @@ const AddLocation = ({ longitude, latitude }) => {
       console.log(data);
       if (data.results.length > 0) {
         console.log("ima nesto!!!")
-        console.log(data.results[0].address_components[2].long_name)
-        return data.results[0].address_components[2].long_name
+        console.log(data.results[0].address_components[3].long_name)
+        return data.results[0].address_components[3].long_name
         
       }
       else {
