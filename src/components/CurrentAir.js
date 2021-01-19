@@ -51,7 +51,7 @@ marker.lat
   }
 
   return (
-    <div>
+    <div className="mb-5">
 
 <Table responsive>
   <thead>

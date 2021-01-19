@@ -21,7 +21,7 @@ const Navigation = props => {
   }
   return (
 
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg mb-5">
       <Navbar.Brand href="#home">Air App</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -33,9 +33,10 @@ const Navigation = props => {
         <Link className="nav-link" exact="true" to="/login">Log In</Link>
         <Link className="nav-link" exact="true" to="/signup">Sign Up</Link>
         <Link className="nav-link" exact="true" to="/forgot-password">Forgot Password</Link>
-        <Button variant="link" onClick={handleLogout}>
+        <Link className="nav-link" exact="true" to="/forgot-password" onClick={handleLogout}>  Log Out</Link>
+        {/* <Button variant="link" onClick={handleLogout}>
           Log Out
-        </Button>
+        </Button> */}
 
       </Navbar.Collapse>
     </Navbar>

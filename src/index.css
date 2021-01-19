@@ -1,0 +1,25 @@
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.App .navbar {
+    background-color: #59a9ff;
+    color: #fff;
+}
+.App .navbar a {
+    color: #fff;
+}
+.navbar-light .navbar-toggler-icon {
+    background-image: url('./img/menu-icon.svg');
+}
+
+.search {
+    visibility: hidden;
+}
+.location-list span {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    line-height: 0;
+}

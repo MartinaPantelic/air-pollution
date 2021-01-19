@@ -3,16 +3,19 @@ import { Card } from "react-bootstrap";
 
 const ListSearch = React.memo(props => {
   const { onLoadLocations } = props;
-  const [enteredFilter, setEnteredFilter] = useState('');
+  //const [enteredFilter, setEnteredFilter] = useState('');
   const inputRef = useRef();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (enteredFilter === inputRef.current.value) {
-        const query = enteredFilter.length === 0
-          ? ''
-          : `?orderBy="title"&equalTo="${enteredFilter}"`;
-        fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json' + query)
+      // if (enteredFilter === inputRef.current.value) {
+        //const query = enteredFilter.length === 0
+         // ? ''
+         // : `?orderBy="title"&equalTo="${enteredFilter}"`;
+        fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json'
+        // + query
+        
+        )
           .then(response => response.json())
           .then(responseData => {
             const loadedLocations = [];
@@ -20,30 +23,32 @@ const ListSearch = React.memo(props => {
               loadedLocations.push({
                 id: key,
                 lon: responseData[key].lon,
-                lat: responseData[key].lat
+                lat: responseData[key].lat,
+                place: responseData[key].place
               });
             }
             onLoadLocations(loadedLocations);
           });
       }
 
-    }, 500);
+    , 500);
     return () => {
       clearTimeout(timer);
     };
 
-  }, [enteredFilter, onLoadLocations, inputRef]);
+  }, onLoadLocations);
+  //[enteredFilter, onLoadLocations, inputRef]);
 
   return (
     <section className="search">
       <Card>
         <div className="search-input">
-          <label>Filter by Title</label>
+          {/* <label>Filter by Title</label>
           <input
             ref={inputRef}
             type="text"
             value={enteredFilter}
-            onChange={event => setEnteredFilter(event.target.value)} />
+            /> */}
         </div>
       </Card>
     </section>

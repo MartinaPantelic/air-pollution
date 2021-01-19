@@ -171,7 +171,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      compass
+      Locate me
     </Button>
   );
 }
@@ -250,9 +250,9 @@ const AddLocation = ({ longitude, latitude }) => {
       console.log(data);
       if (data.results.length > 0) {
         console.log("ima nesto!!!")
-        console.log(data.results[0].address_components[4].long_name)
-        return data.results[0].address_components[4].long_name
-        //setPlaceName(data.results[0].address_components[4].long_name)
+        console.log(data.results[0].address_components[2].long_name)
+        return data.results[0].address_components[2].long_name
+        
       }
       else {
         console.log("NEMA NISTA!!!!")
@@ -307,7 +307,7 @@ const AddLocation = ({ longitude, latitude }) => {
         />
         <div className="Location-form__actions">
           <form onSubmit={submitHandler}>
-            <button type="submit" >Add Location</button>
+          <Button type="submit" className="mb-5">Save Location</Button>
           </form>
         </div>
       </section>
