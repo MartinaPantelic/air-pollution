@@ -30,14 +30,14 @@ export default function App() {
         </div>
 
         <Switch>
-          <Route path='/location' component={LocationPicker} />
+          {/* <Route path='/location' component={LocationPicker} /> */}
           <Route path='/current-air' component={LinkCurrAir} />
           <Route path='/forecast-air' component={LinkForecastAir} />
           <Route path='/posts' component={Post} />
 
 
 
-          <PrivateRoute exact path="/" component={Dashboard} />
+          <PrivateRoute exact path="/" component={LocationPicker} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           <Route exact path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />

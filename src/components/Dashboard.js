@@ -1,20 +1,13 @@
-import React from 'react';
-import { Card } from "react-bootstrap"
-
+import React from "react"
+import LocationContextProvider from '../context/LocationContext';
 
 export default function Dashboard() {
   
 
   return (
     <>
-      <Card>
-        <Card.Body>
-        <h1>
-          Fetching Data with React Hooks
-        </h1>
-     
-        </Card.Body>
-      </Card>
+    <h2 className="text-center mb-5">Choose your location</h2>
+      <LocationContextProvider />
      
     </>
   )
