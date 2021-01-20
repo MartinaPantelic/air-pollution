@@ -79,3 +79,63 @@ ul, li {
     color: #fff;
     text-decoration: none;
 }
+.navbar-light .navbar-toggler {
+    border: 0;
+    outline: 0
+}
+#map {
+    margin-bottom: 80px;
+}
+
+/* post page */
+
+/* .post .container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 970px;
+}
+
+.post .flex-cont {
+    display: flex;
+}
+
+.post .article {
+    padding-bottom: 20px;
+}
+.post .box-img img {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.post .article:nth-child(even) .box-img {
+    order: -1;
+    margin-right: 20px;
+}
+
+.post .article:nth-child(odd) .text-content {
+    margin-right: 20px;
+}
+
+.post .column-cont {
+    justify-content: space-between;
+} */
+
+.post img {
+    width: 100%;
+}
+.post .img-text img {
+        float: left;
+        margin-right: 1em;
+        
+}
+.post .text-img img {
+    float: right;
+    margin-left: 1em;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .post img {
+        width: 60%;
+    }
+}

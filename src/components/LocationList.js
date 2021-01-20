@@ -9,7 +9,7 @@ const LocationList = props => {
         {props.location.map(locationItem => (
           <li key={locationItem.id} className="d-flex list-group-item list-group-item-action"> 
           <a className="custom-tooltip">{locationItem.place}
-          <span class="tooltiptext">Click to see Air Data for {locationItem.place}</span>
+          <span className="tooltiptext">Click to see Air Data for {locationItem.place}</span>
           </a>
             <span className="d-none">{locationItem.lon}</span>
             <span className="d-none">{locationItem.lat}</span>

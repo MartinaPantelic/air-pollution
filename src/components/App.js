@@ -5,6 +5,7 @@ import UpdateProfile from "./UpdateProfile"
 import ForgotPassword from "./ForgotPassword"
 import Login from "./Login"
 import Dashboard from './Dashboard'
+import Post from './Post'
 import PrivateRoute from "./PrivateRoute"
 import SignUp from "./SignUp"
 import { AuthProvider } from "../context/AuthContext"
@@ -32,6 +33,7 @@ export default function App() {
           <Route path='/location' component={LocationPicker} />
           <Route path='/current-air' component={LinkCurrAir} />
           <Route path='/forecast-air' component={LinkForecastAir} />
+          <Route path='/posts' component={Post} />
 
 
 

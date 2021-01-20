@@ -27,6 +27,7 @@ const Navigation = props => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Link className="nav-link" exact="true" to="/current-air">Current Air</Link>
         <Link className="nav-link" exact="true" to="/forecast-air">Forecast Air</Link>
+        <Link className="nav-link" exact="true" to="/posts">Posts</Link>
         <Link className="nav-link" exact="true" to="/">Dashboard</Link>
         <Link className="nav-link" exact="true" to="/location"> Location</Link>
         <Link className="nav-link" exact="true" to="/update-profile">Update Profile</Link>
