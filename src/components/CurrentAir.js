@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { LocationContext } from '../context/LocationContext';
+//import { LocationListContext } from './LocationList';
 import { Table } from "react-bootstrap"
 import axios from "axios"
 
@@ -7,9 +8,12 @@ function CurrentAir() {
   const [airData, setAirData] = useState(null)
 
   const { markers } = useContext(LocationContext);
+  console.log(markers)
+  // const { locationListLat } = useContext(LocationListContext)
+  //  console.log(locationListLat)
   let marker = {lng: 50, lat: 55};
 
- 
+
 
 let longitudeList =  markers.map(marker => {
   return (
@@ -52,7 +56,7 @@ marker.lat
 
   return (
     <div className="mb-5">
-
+{/* <div>{locationListLat}</div> */}
 <Table responsive>
   <thead>
     <tr>

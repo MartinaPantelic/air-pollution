@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, Navbar } from "react-bootstrap"
+import { Navbar } from "react-bootstrap"
 
 import { useAuth } from "../context/AuthContext"
 import { Link, useHistory } from "react-router-dom"

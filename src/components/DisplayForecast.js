@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 
 
 
-const DisplayAir = () => {
+const DisplayForecastAir = () => {
     return ( 
    <LocationContextProvider>
            
@@ -22,4 +22,4 @@ const DisplayAir = () => {
 }
 
 
-    export default DisplayAir;
+    export default DisplayForecastAir;

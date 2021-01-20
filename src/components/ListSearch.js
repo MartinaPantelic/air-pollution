@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {  useEffect } from 'react';
 import { Card } from "react-bootstrap";
 
 const ListSearch = React.memo(props => {
   const { onLoadLocations } = props;
   //const [enteredFilter, setEnteredFilter] = useState('');
-  const inputRef = useRef();
+  //const inputRef = useRef();
 
   useEffect(() => {
     const timer = setTimeout(() => {
