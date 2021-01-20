@@ -1,10 +1,13 @@
-import React, {useState, useEffect, useCallback} from "react"
+import React, {useState, useEffect, useCallback, useContext} from "react"
 import LocationList from '../components/LocationList';
+import { LocationContext } from '../context/LocationContext';
 import ListSearch from '../components/ListSearch';
 import { Button } from "react-bootstrap"
 
 
-const AddLocation = ({ longitude, latitude }) => {
+const AddLocation = () => {
+    
+    const { longitude, latitude } = useContext(LocationContext);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const [userLocation, setUserLocation] = useState([]);
@@ -75,6 +78,7 @@ const AddLocation = ({ longitude, latitude }) => {
         setIsLoading(false);
       });
     };
+    console.log(userLocation)
     return (
       <div className="App">
         <section>

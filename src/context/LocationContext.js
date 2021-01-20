@@ -92,7 +92,7 @@ const LocationContextProvider = (props) => {
   let longitude = longitudeList[longitudeList.length - 1];
   let latitude = latitudeList[latitudeList.length - 1];
   return (
-    <LocationContext.Provider value={{ markers }}>
+    <LocationContext.Provider value={{ markers, longitude, latitude }}>
       
       <Container>
       
@@ -153,7 +153,7 @@ const LocationContextProvider = (props) => {
           </GoogleMap>
         </div>
         {props.children}
-        <AddLocation longitude={longitude} latitude={latitude} />
+        {/* <AddLocation longitude={longitude} latitude={latitude} /> */}
       </Container>
     </LocationContext.Provider>
   )
@@ -234,6 +234,3 @@ function Search({ panTo }) {
 }
 
 export default LocationContextProvider;
-
-
-
