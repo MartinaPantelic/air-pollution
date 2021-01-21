@@ -31,8 +31,8 @@ export default function App() {
 
         <Switch>
           {/* <Route path='/location' component={LocationPicker} /> */}
-          <Route path='/current-air' component={DisplayAir} />
-          <Route path='/forecast-air' component={DisplayForecast} />
+          <Route path='/current-air' component={DisplayForecast} />
+          {/* <Route path='/forecast-air' component={DisplayForecast} /> */}
           <Route path='/posts' component={Post} />
 
 
