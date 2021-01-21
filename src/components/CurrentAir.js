@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { LocationContext } from '../context/LocationContext';
-//import { LocationListContext } from './LocationList';
+import { LocationListContext } from './LocationList';
 import { Table } from "react-bootstrap"
 import axios from "axios"
 
@@ -8,6 +8,7 @@ function CurrentAir() {
   const [airData, setAirData] = useState(null)
 
   const { markers } = useContext(LocationContext);
+ // const { locationListLon } = useContext(LocationListContext);
  
 
   let marker = { lng: 50, lat: 55 };

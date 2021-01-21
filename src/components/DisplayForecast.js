@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 
 import LocationContextProvider from '../context/LocationContext';
+import LocationListContextProvider from './LocationList';
 import CurrentAir from "./CurrentAir"
 import ForecastAir from "./ForecastAir";
 import AddLocation from "./AddLocation";
@@ -18,12 +19,13 @@ const DisplayForecastAir = () => {
 
     return (
         <LocationContextProvider>
+            {/* <LocationListContextProvider> */}
             <CurrentAir />
 
             {showForecast}
             <Button variant="outline-primary" className="btn-lg mb-5 mx-auto" onClick={() => { toggleVisibility(); SetButtonText(!buttonText) }}>{buttonText ? "Hide Forecast" : "Show Forecast"}</Button>
             <AddLocation />
-          
+            {/* </LocationListContextProvider> */}
         </LocationContextProvider>
     )
 }
