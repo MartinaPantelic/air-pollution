@@ -5,14 +5,15 @@ export const LocationListContext = createContext();
 const LocationListContextProvider = (props) => {
   let locationListCoord = props.location.map(locationItem => {
     return (
-      locationItem.lat
+      locationItem.place
     );
   })
-  let locationListLat = locationListCoord[0]
-  console.log(locationListLat)
+  let locationListPlace = locationListCoord[locationListCoord.length - 1]
+
+  // latitudeList[latitudeList.length - 1];  console.log(locationListPlace)
 
   return (
-    <LocationListContext.Provider value={{ locationListLat }}>
+    <LocationListContext.Provider value={{ locationListPlace }}>
     <section className="location-list list-group mb-3">
       <h4 className="locations-title mb-3">My Locations</h4>
       <ul>
@@ -27,6 +28,7 @@ const LocationListContextProvider = (props) => {
           </li>
         ))}
       </ul>
+      {/* <div>{locationListPlace}</div> */}
     </section>
     </LocationListContext.Provider>
   );

@@ -7,11 +7,11 @@ import {
 } from "@react-google-maps/api";
 
 import { formatRelative } from "date-fns";
-import { Container, Button } from "react-bootstrap"
-// import AddLocation from '../components/AddLocation';
-import CurrentAir from '../components/CurrentAir';
+import { Container } from "react-bootstrap"
 
-import citizens_masks from '../img/citizens_masks.jpg';
+import ShowPlace from '../components/ShowPlace';
+
+
 import Search from '../components/MapsComponents/Search'
 import Locate from '../components/MapsComponents/Locate';
 import "@reach/combobox/styles.css";
@@ -85,11 +85,14 @@ const LocationContextProvider = (props) => {
   })
   let longitude = longitudeList[longitudeList.length - 1];
   let latitude = latitudeList[latitudeList.length - 1];
+
+
+
   return (
     <LocationContext.Provider value={{ markers, longitude, latitude, panTo }}>
       
       <Container>
-      
+      <ShowPlace />
         {/* google map */}
         {/* <CurrentAir /> */}
         {props.children}
@@ -154,4 +157,11 @@ const LocationContextProvider = (props) => {
 }
 
 
-export default LocationContextProvider;
+
+
+  
+
+
+  export default LocationContextProvider;
+
+//export default {LocationContextProvider, ShowPlace};

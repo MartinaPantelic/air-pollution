@@ -89,9 +89,7 @@ function ForecastAir() {
           {airData.map((daily, index) => {
             return (
               <tr>
-                {/* new Date(daily.dt * 1000) - get you a day, date, month year....
-              new Date(daily.dt * 1000).getDay() - get you a number(example(if it's Friday, you'll get 5))
-              days[5] - Friday */}
+
                 <td key={generateKey(index)}>{days[new Date(daily.dt * 1000).getDay()]}</td>
                 <td key={generateKey(daily.components.co)}>{daily.components.co}</td>
                 <td key={generateKey(daily.components.no)}>{daily.components.no}</td>

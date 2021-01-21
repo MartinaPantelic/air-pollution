@@ -1,5 +1,4 @@
 import React from "react"
-import LocationPicker from "./LocationPicker"
 import Navigation from "./Navigation"
 import UpdateProfile from "./UpdateProfile"
 import ForgotPassword from "./ForgotPassword"
@@ -10,7 +9,7 @@ import SignUp from "./SignUp"
 import { AuthProvider } from "../context/AuthContext"
 
 import DisplayForecast from "./DisplayForecast"
-import DisplayAir from "./DisplayAir"
+
 
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom"
 
@@ -30,14 +29,14 @@ export default function App() {
         </div>
 
         <Switch>
-          {/* <Route path='/location' component={LocationPicker} /> */}
+         
           <Route path='/current-air' component={DisplayForecast} />
           {/* <Route path='/forecast-air' component={DisplayForecast} /> */}
           <Route path='/posts' component={Post} />
 
 
 
-          <PrivateRoute exact path="/" component={LocationPicker} />
+          <PrivateRoute exact path="/" component={DisplayForecast} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           <Route exact path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
