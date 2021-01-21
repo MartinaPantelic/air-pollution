@@ -68,7 +68,7 @@ function ForecastAir() {
 
   return (
     <div className="mb-5">
-
+<h2 className="mb-4">5 days Forecast Air Data</h2>
       <Table responsive>
         <thead>
           <tr>

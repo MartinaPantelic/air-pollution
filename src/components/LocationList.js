@@ -14,7 +14,7 @@ const LocationListContextProvider = (props) => {
   return (
     <LocationListContext.Provider value={{ locationListLat }}>
     <section className="location-list list-group mb-3">
-      <h3 className="locations-title mb-3">My Locations</h3>
+      <h4 className="locations-title mb-3">My Locations</h4>
       <ul>
         {props.location.map(locationItem => (
           <li key={locationItem.id} className="d-flex list-group-item list-group-item-action"> 

@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useCallback, useContext} from "react"
 import LocationList from '../components/LocationList';
+//import LocationListContext from '../components/LocationList';
 import { LocationContext } from '../context/LocationContext';
 import ListSearch from '../components/ListSearch';
 import { Button } from "react-bootstrap"

@@ -8,7 +8,6 @@ import AddLocation from "./AddLocation";
 import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
-//import LocationPicker from "./LocationPicker";
 
 
 

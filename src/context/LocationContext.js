@@ -5,21 +5,15 @@ import {
   Marker,
   InfoWindow
 } from "@react-google-maps/api";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from "@reach/combobox";
+
 import { formatRelative } from "date-fns";
 import { Container, Button } from "react-bootstrap"
-import AddLocation from '../components/AddLocation';
+// import AddLocation from '../components/AddLocation';
+import CurrentAir from '../components/CurrentAir';
 
+import citizens_masks from '../img/citizens_masks.jpg';
+import Search from '../components/MapsComponents/Search'
+import Locate from '../components/MapsComponents/Locate';
 import "@reach/combobox/styles.css";
 export const LocationContext = createContext();
 const libraries = ["places"];
@@ -92,13 +86,13 @@ const LocationContextProvider = (props) => {
   let longitude = longitudeList[longitudeList.length - 1];
   let latitude = latitudeList[latitudeList.length - 1];
   return (
-    <LocationContext.Provider value={{ markers, longitude, latitude }}>
+    <LocationContext.Provider value={{ markers, longitude, latitude, panTo }}>
       
       <Container>
       
         {/* google map */}
-        <div className="container">
-          { }
+        {/* <CurrentAir /> */}
+        {props.children}
         
           <Locate panTo={panTo} />
           <Search panTo={panTo} />
@@ -142,7 +136,7 @@ const LocationContextProvider = (props) => {
                {selected.lng}
                <h2>
                 
-                 <div><span>AQI: </span>
+                 <div><span>Location selected </span>
                    {/* {airData.list[0].main.aqi} */}
                  </div>
                </h2>
@@ -151,86 +145,13 @@ const LocationContextProvider = (props) => {
            </InfoWindow>
             ) : null}
           </GoogleMap>
-        </div>
-        {props.children}
+       
         {/* <AddLocation longitude={longitude} latitude={latitude} /> */}
       </Container>
+      {/* <img src={citizens_masks} alt="citizens_masks" className="w-100"/> */}
     </LocationContext.Provider>
   )
 }
-function Locate({ panTo }) {
-  return (
-    <Button
-      className="locate-btn mb-3"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: (position.coords.latitude),
-              lng: (position.coords.longitude),
-            });
-          },
-          () => null
-        );
-      }}
-    >
-      <span className="compass-icon"></span>
-      Locate me
-    </Button>
-  );
-}
 
-function Search({ panTo }) {
-  const {
-    ready,
-    value,
-    suggestions: { status, data },
-    setValue,
-    clearSuggestions,
-  } = usePlacesAutocomplete({
-    requestOptions: {
-      location: { lat: () => 43.6532, lng: () => -79.3832 },
-      radius: 1000 * 1000,
-    },
-  });
-  // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
-  const handleInput = (e) => {
-    setValue(e.target.value);
-  };
-  const handleSelect = async (address) => {
-    setValue(address, false);
-    clearSuggestions();
-    console.log(address)
-    try {
-      const results = await getGeocode({ address });
-      const { lat, lng } = await getLatLng(results[0]);
-      console.log(results[0].address_components[0].long_name)
-      panTo({ lat, lng });
-    } catch (error) {
-      console.log(":scream: Error: ", error);
-    }
-  };
-  return (
-    <div className="search">
-      <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-          className="form-control mb-3 float-left"
-          value={value}
-          onChange={handleInput}
-          disabled={!ready}
-          placeholder="Search your location"
-        />
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === "OK" &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
-              ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
-    </div>
-  );
-}
 
 export default LocationContextProvider;
