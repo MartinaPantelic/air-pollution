@@ -81,7 +81,7 @@ const AddLocation = () => {
     };
     console.log(userLocation)
     return (
-      <div className="App">
+      <div className="add-location">
         <section>
           <ListSearch onLoadLocations={filteredLocationHandler} />
           <LocationList

@@ -7,7 +7,7 @@ import {
 } from "@react-google-maps/api";
 
 import { formatRelative } from "date-fns";
-import { Container } from "react-bootstrap"
+import { Container, Button } from "react-bootstrap"
 
 import ShowPlace from '../components/ShowPlace';
 
@@ -37,21 +37,22 @@ const LocationContextProvider = (props) => {
   });
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+  const [showResults, setShowResults] = React.useState(false);
   const onMapClick = React.useCallback((e) => {
-  
+
     setMarkers((current) => [
       ...current,
       {
-       
+
         lat: e.latLng.lat(),
         lng: e.latLng.lng(),
         time: new Date(),
       },
     ]);
     console.log(e.latLng.lat())
-    
-    
-    
+
+
+
   }, []);
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -61,7 +62,7 @@ const LocationContextProvider = (props) => {
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
-   
+
     setMarkers((current) => [
       ...current,
       {
@@ -86,17 +87,19 @@ const LocationContextProvider = (props) => {
   let longitude = longitudeList[longitudeList.length - 1];
   let latitude = latitudeList[latitudeList.length - 1];
 
-
+  const ShowGoogleMap = () => setShowResults(!showResults)
 
   return (
     <LocationContext.Provider value={{ markers, longitude, latitude, panTo }}>
-      
+
       <Container>
-      <ShowPlace />
+        <ShowPlace />
+
         {/* google map */}
         {/* <CurrentAir /> */}
         {props.children}
-        
+
+        <div style={{ display: showResults ? 'block' : 'none' }}>
           <Locate panTo={panTo} />
           <Search panTo={panTo} />
           <GoogleMap
@@ -116,8 +119,8 @@ const LocationContextProvider = (props) => {
                 position={{ lat: marker.lat, lng: marker.lng }}
                 onClick={() => {
                   setSelected(marker);
-                  
-                  
+
+
                 }}
                 icon={{
                   url: `/bear.svg`,
@@ -128,27 +131,28 @@ const LocationContextProvider = (props) => {
               />
             ))}
             {selected ? (
-             <InfoWindow
-             position={{ lat: selected.lat, lng: selected.lng }}
-             onCloseClick={() => {
-               setSelected(null);
-             }}
-           >
-             <div>
-               {selected.lat}
-               {selected.lng}
-               <h2>
-                
-                 <div><span>Location selected </span>
-                   {/* {airData.list[0].main.aqi} */}
-                 </div>
-               </h2>
-               <p>Spotted {formatRelative(selected.time, new Date())}</p>
-             </div>
-           </InfoWindow>
+              <InfoWindow
+                position={{ lat: selected.lat, lng: selected.lng }}
+                onCloseClick={() => {
+                  setSelected(null);
+                }}
+              >
+                <div>
+                  {selected.lat}
+                  {selected.lng}
+                  <h2>
+
+                    <div><span>Location selected </span>
+                      {/* {airData.list[0].main.aqi} */}
+                    </div>
+                  </h2>
+                  <p>Spotted {formatRelative(selected.time, new Date())}</p>
+                </div>
+              </InfoWindow>
             ) : null}
           </GoogleMap>
-       
+        </div>
+        <Button variant="primary" className="btn-lg mb-5" onClick={ShowGoogleMap}>{showResults ? "Hide Map" : "Pick Location"}</Button>
         {/* <AddLocation longitude={longitude} latitude={latitude} /> */}
       </Container>
       {/* <img src={citizens_masks} alt="citizens_masks" className="w-100"/> */}
@@ -159,9 +163,9 @@ const LocationContextProvider = (props) => {
 
 
 
-  
 
 
-  export default LocationContextProvider;
+
+export default LocationContextProvider;
 
 //export default {LocationContextProvider, ShowPlace};

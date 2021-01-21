@@ -14,7 +14,7 @@ const LocationListContextProvider = (props) => {
 
   return (
     <LocationListContext.Provider value={{ locationListPlace }}>
-    <section className="location-list list-group mb-3">
+    <section className="location-list list-group mb-3 mt-3">
       <h4 className="locations-title mb-3">My Locations</h4>
       <ul>
         {props.location.map(locationItem => (

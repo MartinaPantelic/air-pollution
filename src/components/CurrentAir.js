@@ -55,7 +55,7 @@ marker.lat
   }
 
   return (
-    <div className="mb-5">
+    <div className="mb-3">
 {/* <div>{locationListLat}</div> */}
 <h2 className="mb-4">Current Air Data</h2>
 <Table responsive>

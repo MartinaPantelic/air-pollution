@@ -43,7 +43,7 @@ ul, li {
     background-size: 18px;
 }
 .search-input-filter {
-    visibility: hidden;
+    display: none;
 }
 
 .list-group-item {
@@ -92,7 +92,7 @@ ul, li {
     outline: 0
 }
 #map {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 .full-screen {
     position: absolute;
@@ -105,11 +105,12 @@ ul, li {
     justify-content: center;
     background-color: #fff;
 }
-.full-screen .card {
+ .card {
     width: 50%;
     max-width: 600px;
     min-width: 320px;
-    margin: 100px 0;
+    margin: 100px auto;
+
 }
 
 /* post page */

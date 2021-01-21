@@ -21,7 +21,7 @@ const DisplayForecastAir = () => {
             <CurrentAir />
 
             {showForecast}
-            <Button variant="outline-primary" className="btn-lg mb-5 mt-3 mx-auto" onClick={() => { toggleVisibility(); SetButtonText(!buttonText) }}>{buttonText ? "Hide Forecast" : "Show Forecast"}</Button>
+            <Button variant="outline-primary" className="btn-lg mb-5 mx-auto" onClick={() => { toggleVisibility(); SetButtonText(!buttonText) }}>{buttonText ? "Hide Forecast" : "Show Forecast"}</Button>
             <AddLocation />
           
         </LocationContextProvider>
