@@ -9,7 +9,7 @@ function ForecastAir() {
 
   const { markers } = useContext(LocationContext);
 
-  let marker = { lng: 50, lat: 55 };
+  let marker = { lng: -78.898619, lat: 35.9940329 };
 
   const days = [
     "Sunday",
@@ -69,7 +69,7 @@ function ForecastAir() {
 
   return (
     <div className="mb-5">
-    <h3 className="mb-3">5 Days Forecast</h3>
+    <h3 className="mb-3">5 Day Forecast</h3>
       <Table responsive>
         <thead>
           <tr>

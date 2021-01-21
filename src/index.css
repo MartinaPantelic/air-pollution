@@ -112,7 +112,9 @@ ul, li {
     margin: 100px auto;
 
 }
-
+.aqi {
+    color: #0061c9;
+}
 /* post page */
 
 
@@ -129,6 +131,13 @@ ul, li {
     margin-left: 1em;
 }
 
+.gm-style-iw-d h1 {
+    font-size: 16px;
+}
+
+.gm-style-iw-d .mb-5 {
+    margin-bottom: 15px!important;
+}
 
 @media only screen and (min-width: 768px) {
     .post img {

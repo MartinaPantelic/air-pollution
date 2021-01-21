@@ -138,15 +138,12 @@ const LocationContextProvider = (props) => {
                 }}
               >
                 <div>
-                  {selected.lat}
-                  {selected.lng}
-                  <h2>
-
-                    <div><span>Location selected </span>
+                  <ShowPlace className="infowindow h6"/>
+                    <div>
                       {/* {airData.list[0].main.aqi} */}
                     </div>
-                  </h2>
-                  <p>Spotted {formatRelative(selected.time, new Date())}</p>
+                  
+                  <p>{formatRelative(selected.time, new Date())}</p>
                 </div>
               </InfoWindow>
             ) : null}

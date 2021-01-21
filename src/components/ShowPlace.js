@@ -9,7 +9,7 @@ function ShowPlace() {
   const { markers } = useContext(LocationContext);
   console.log(markers)
  
-  let marker = {lng: 50, lat: 55};
+  let marker = {lng: -78.898619, lat:  35.9940329};
 
 
 
