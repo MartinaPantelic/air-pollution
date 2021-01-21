@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react"
 import { LocationContext } from '../context/LocationContext';
 import { Table } from "react-bootstrap"
 import axios from "axios"
+import ReactLoading from "react-loading";
 
 function ForecastAir() {
   const [airData, setAirData] = useState(null)
@@ -63,12 +64,12 @@ function ForecastAir() {
 
 
   if (!airData) {
-    return <div>Loading indicator</div>
+    return <ReactLoading type="spin" color="#59A9FF" className="mx-auto" />
   }
 
   return (
     <div className="mb-5">
-<h2 className="mb-4">5 days Forecast Air Data</h2>
+    <h3 className="mb-3">5 Days Forecast</h3>
       <Table responsive>
         <thead>
           <tr>

@@ -1,26 +1,31 @@
-import React from "react"
+import React, { useState } from "react"
 
 
 import LocationContextProvider from '../context/LocationContext';
-
+import CurrentAir from "./CurrentAir"
 import ForecastAir from "./ForecastAir";
 import AddLocation from "./AddLocation";
 import { Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
-
+import VisibilityHandler from "./VisibilityHandler"
 
 
 
 const DisplayForecastAir = () => {
-    return ( 
-   <LocationContextProvider>
-           
-            <ForecastAir />
+
+    const [showForecast, toggleVisibility] = VisibilityHandler(<ForecastAir />, false)
+    const [buttonText, SetButtonText] = useState(false)
+
+
+    return (
+        <LocationContextProvider>
+            <CurrentAir />
+
+            {showForecast}
+            <Button variant="outline-primary" className="btn-lg mb-5 mt-3 mx-auto" onClick={() => { toggleVisibility(); SetButtonText(!buttonText) }}>{buttonText ? "Hide Forecast" : "Show Forecast"}</Button>
             <AddLocation />
-            <Button variant="outline-primary" className="btn-lg mb-5">  <Link className="button-link" exact="true" to="/current-air">Current Air</Link></Button>
-          </LocationContextProvider> 
-    )    
+          
+        </LocationContextProvider>
+    )
 }
 
-
-    export default DisplayForecastAir;
+export default DisplayForecastAir;
