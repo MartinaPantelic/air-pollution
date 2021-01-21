@@ -1,5 +1,5 @@
 
-import React, { useContext} from "react"
+import React, { useContext } from "react"
 
 import { LocationContext } from '../../context/LocationContext';
 
@@ -7,14 +7,14 @@ import { LocationContext } from '../../context/LocationContext';
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
-  } from "use-places-autocomplete";
-  import {
+} from "use-places-autocomplete";
+import {
     Combobox,
     ComboboxInput,
     ComboboxPopover,
     ComboboxList,
     ComboboxOption,
-  } from "@reach/combobox";
+} from "@reach/combobox";
 
 const Search = () => {
     const { panTo } = useContext(LocationContext);
@@ -48,7 +48,7 @@ const Search = () => {
         }
     };
     return (
-       
+
         <div className="search">
             <Combobox onSelect={handleSelect}>
                 <ComboboxInput
@@ -68,7 +68,7 @@ const Search = () => {
                 </ComboboxPopover>
             </Combobox>
         </div>
-       
+
     );
 }
 

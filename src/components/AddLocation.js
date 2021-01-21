@@ -79,7 +79,7 @@ const AddLocation = () => {
         setIsLoading(false);
       });
     };
-    console.log(userLocation)
+  
     return (
       <div className="add-location">
         <section>

@@ -7,10 +7,9 @@ function ShowPlace() {
   const [placeData, setPlaceData] = useState("Durham")
 
   const { markers } = useContext(LocationContext);
-  console.log(markers)
+
  
   let marker = {lng: -78.898619, lat:  35.9940329};
-
 
 
 let longitudeList =  markers.map(marker => {
@@ -27,7 +26,6 @@ marker.lat
 
   let longitude = (markers.length !== 0) ? longitudeList[longitudeList.length - 1] : marker.lng;
   let latitude = (markers.length !== 0) ? latitudeList[latitudeList.length - 1] : marker.lat;
-  console.log(longitude, latitude)
 
   useEffect(() => {
     async function getData() {
@@ -51,9 +49,6 @@ marker.lat
   }, [longitude, latitude])
 
 
-console.log(placeData)
-  
-
   if (!placeData) {
     return <div>Loading indicator</div>
   }
@@ -66,8 +61,6 @@ console.log(placeData)
     
   )
 }
-
-
 
 
 export default ShowPlace

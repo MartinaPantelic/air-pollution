@@ -27,14 +27,11 @@ const Navigation = props => {
   return (
 
     <Navbar expand="lg mb-5">
-      <Navbar.Brand> <Link exact="true" to="/current-air">Air App</Link></Navbar.Brand>
+      <Navbar.Brand> <Link exact="true" to="/">Air App</Link></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Link className="nav-link" exact="true" to="/">Current Air</Link>
-        {/* <Link className="nav-link" exact="true" to="/forecast-air">Forecast Air</Link> */}
         <Link className="nav-link" exact="true" to="/posts">Posts</Link>
-        {/* <Link className="nav-link" exact="true" to="/">Dashboard</Link>
-        <Link className="nav-link" exact="true" to="/location"> Location</Link> */}
         <Link className="nav-link" exact="true" to="/update-profile">Update Profile</Link>
         <Link className="nav-link" exact="true" onClick={handleLogout}>  Log Out</Link>
        

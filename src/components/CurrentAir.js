@@ -8,7 +8,7 @@ function CurrentAir() {
   const [airData, setAirData] = useState(null)
 
   const { markers } = useContext(LocationContext);
-  console.log(markers)
+ 
 
   let marker = { lng: 50, lat: 55 };
 

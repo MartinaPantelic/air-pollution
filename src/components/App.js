@@ -14,38 +14,30 @@ import DisplayForecast from "./DisplayForecast"
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom"
 
 
-
-
-
 export default function App() {
 
   return (
     <BrowserRouter>
-    <Router>
-      <AuthProvider>
-        <div className="App">
-          <Navigation />
+      <Router>
+        <AuthProvider>
+          <div className="App">
+            <Navigation />
 
-        </div>
+          </div>
 
-        <Switch>
-         
-          {/* <Route path='/current-air' component={DisplayForecast} /> */}
-          {/* <Route path='/forecast-air' component={DisplayForecast} /> */}
-          <Route path='/posts' component={Post} />
+          <Switch>
 
+            <PrivateRoute exact path="/" component={DisplayForecast} />
+            <Route path='/posts' component={Post} />
+            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <Route exact path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/forgot-password" component={ForgotPassword} />
 
+          </Switch>
 
-          <PrivateRoute exact path="/" component={DisplayForecast} />
-          <PrivateRoute path="/update-profile" component={UpdateProfile} />
-          <Route exact path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/forgot-password" component={ForgotPassword} />
-
-        </Switch>
-
-      </AuthProvider>
-    </Router>
+        </AuthProvider>
+      </Router>
     </BrowserRouter>
 
   )

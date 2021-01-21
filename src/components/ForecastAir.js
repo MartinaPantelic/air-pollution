@@ -45,13 +45,13 @@ function ForecastAir() {
   useEffect(() => {
     async function getData() {
 
-      const every_nth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1); //filter methed to get every nth element in array
+      const every_nth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1); //filter method to get every nth element in array
       const url = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
 
       console.log(url);
       try {
         const response = await axios.get(url)
-        const listOfObjects = response.data.list //here we have 168 objects, for each hour in period of 7 days, starting two days ago
+        const listOfObjects = response.data.list // 168 objects, for each hour in period of 7 days, starting two days ago
         setAirData(((every_nth(listOfObjects, 24)).splice(2,))) //filtered list to get every 24th(one per each day), and then call splice method to get array of five days, starting today
         // console.log(airData)
       } catch (err) {
