@@ -46,7 +46,7 @@ function ForecastAir() {
     async function getData() {
 
       const every_nth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1); //filter method to get every nth element in array
-      const url = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+      const url = `https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
 
       console.log(url);
       try {
