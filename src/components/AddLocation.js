@@ -123,12 +123,12 @@ const AddLocation = () => {
                 <tr>
                   <th>CO</th>
                   <th>NO</th>
-                  <th>NO<span>2</span></th>
-                  <th>O<span>3</span></th>
-                  <th>SO<span>2</span></th>
-                  <th>PM<span>2_5</span></th>
-                  <th>PM<span>10</span></th>
-                  <th>NH<span>3</span></th>
+                  <th>NO<sub>2</sub></th>
+                  <th>O<sub>3</sub></th>
+                  <th>SO<sub>2</sub></th>
+                  <th>PM<sub>2.5</sub></th>
+                  <th>PM<sub>10</sub></th>
+                  <th>NH<sub>3</sub></th>
                 </tr>
               </thead>
               <tbody>
@@ -143,9 +143,13 @@ const AddLocation = () => {
                   <td>{airListData.list[0].components.nh3}</td>
 
                 </tr>
-
               </tbody>
             </Table>
+            <small className="table-units text-right">
+              <div>AIR QUALITY INDEX </div>
+              <div>1 - very good</div><div>5 - poor</div>
+              <div>mg/m<sup>3</sup></div>
+            </small>
           </div>
         }
         </div>
