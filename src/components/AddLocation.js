@@ -83,7 +83,7 @@ const AddLocation = () => {
     };
     
     const listLocationClickHandler = async (lat, lon) =>{
-      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+      const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
 
       console.log(url);
       try {
