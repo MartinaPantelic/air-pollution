@@ -32,7 +32,7 @@ export default function SignUp() {
   }
 
   return (
-    <>
+    <div className="full-screen">
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
@@ -55,10 +55,11 @@ export default function SignUp() {
             </Button>
           </Form>
         </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
+        <div className="w-100 text-center mt-2 mb-3">
         Already have an account? <Link to="/login">Log In</Link>
       </div>
-    </>
+      </Card>
+      
+    </div>
   )
 }
