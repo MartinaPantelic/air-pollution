@@ -149,7 +149,7 @@ const LocationContextProvider = (props) => {
             ) : null}
           </GoogleMap>
         </div>
-        <Button variant="primary" className="btn-lg mb-5" onClick={ShowGoogleMap}>{showResults ? "Hide Map" : "Pick Location"}</Button>
+        <Button className="btn-lg mb-5 btn-outline-primary mt-5 white-override" onClick={ShowGoogleMap}>{showResults ? "Hide Map" : "Pick Location"}</Button>
         {/* <AddLocation longitude={longitude} latitude={latitude} /> */}
       </Container>
       {/* <img src={citizens_masks} alt="citizens_masks" className="w-100"/> */}
@@ -165,4 +165,3 @@ const LocationContextProvider = (props) => {
 
 export default LocationContextProvider;
 
-//export default {LocationContextProvider, ShowPlace};

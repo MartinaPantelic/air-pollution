@@ -138,6 +138,14 @@ ul, li {
 .gm-style-iw-d .mb-5 {
     margin-bottom: 15px!important;
 }
+.white-override {
+    background-color: #fff!important;
+    color: #007bff!important;
+}
+.white-override:hover {
+    background-color: #007bff!important;
+    color: #fff!important;
+}
 
 @media only screen and (min-width: 768px) {
     .post img {

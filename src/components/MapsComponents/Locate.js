@@ -10,7 +10,7 @@ function Locate() {
   return (
    
     <Button
-      className="locate-btn mb-3"
+      className="locate-btn mb-3 mt-5"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
