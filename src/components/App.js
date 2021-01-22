@@ -26,9 +26,9 @@ export default function App() {
           </div>
 
           <Switch>
-{/* 
-            <PrivateRoute exact path="/" component={DisplayForecast} /> */}
-            <Route exact path="/" component={DisplayForecast} />
+
+            
+            <PrivateRoute exact path="/" component={DisplayForecast} />
             <PrivateRoute path='/posts' component={Post} />
             <PrivateRoute path="/update-profile" component={UpdateProfile} />
             <Route exact path="/login" component={Login} />
