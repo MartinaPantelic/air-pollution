@@ -11,7 +11,7 @@ import VisibilityHandler from "./VisibilityHandler"
 
 
 
-const DisplayForecastAir = () => {
+const DisaplayMyLocations = () => {
 
     const [showForecast, toggleVisibility] = VisibilityHandler(<ForecastAir />, false)
     const [buttonText, SetButtonText] = useState(false)
@@ -19,15 +19,11 @@ const DisplayForecastAir = () => {
 
     return (
         <LocationContextProvider>
-            {/* <LocationListContextProvider> */}
-            <CurrentAir />
-
-            {showForecast}
-            <Button variant="outline-primary" className="btn-lg mb-5 mx-auto" onClick={() => { toggleVisibility(); SetButtonText(!buttonText) }}>{buttonText ? "Hide Forecast" : "Show Forecast"}</Button>
-            {/* <AddLocation /> */}
+          
+            <AddLocation />
             {/* </LocationListContextProvider> */}
         </LocationContextProvider>
     )
 }
 
-export default DisplayForecastAir;
+export default DisaplayMyLocations;

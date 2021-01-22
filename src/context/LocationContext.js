@@ -10,6 +10,7 @@ import { formatRelative } from "date-fns";
 import { Container, Button } from "react-bootstrap"
 
 import ShowPlace from '../components/ShowPlace';
+import DisplayMyLocations from '../components/DisplayMyLocations';
 
 
 import Search from '../components/MapsComponents/Search'
@@ -98,7 +99,7 @@ const LocationContextProvider = (props) => {
         {/* google map */}
         {/* <CurrentAir /> */}
         {props.children}
-
+        {/* <DisplayMyLocations /> */}
         <div style={{ display: showResults ? 'block' : 'none' }}>
           <Locate panTo={panTo} />
           <Search panTo={panTo} />
@@ -149,8 +150,12 @@ const LocationContextProvider = (props) => {
             ) : null}
           </GoogleMap>
         </div>
-        <Button className="btn-lg mb-5 btn-outline-primary mt-5 white-override" onClick={ShowGoogleMap}>{showResults ? "Hide Map" : "Pick Location"}</Button>
+        <div>
+        <Button className="btn-lg mb-3 btn-outline-primary mt-3 white-override" onClick={ShowGoogleMap}>{showResults ? "Hide Map" : "Pick Location"}</Button>
         {/* <AddLocation longitude={longitude} latitude={latitude} /> */}
+
+        </div>
+       
       </Container>
       {/* <img src={citizens_masks} alt="citizens_masks" className="w-100"/> */}
     </LocationContext.Provider>

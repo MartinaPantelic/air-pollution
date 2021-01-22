@@ -31,11 +31,12 @@ const Navigation = props => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Link className="nav-link" exact="true" to="/">Current Air</Link>
+        <Link className="nav-link" exact="true" to="/my-locations">My Locations</Link>
         <Link className="nav-link" exact="true" to="/posts">Posts</Link>
         <Link className="nav-link" exact="true" to="/update-profile">Update Profile</Link>
         <Link className="nav-link" exact="true" onClick={handleLogout}>  Log Out</Link>
        
-
+       
       </Navbar.Collapse>
     </Navbar>
 
