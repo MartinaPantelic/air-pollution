@@ -8,8 +8,8 @@ function CurrentAir() {
   const [airData, setAirData] = useState(null)
 
   const { markers } = useContext(LocationContext);
- // const { locationListLon } = useContext(LocationListContext);
- 
+  // const { locationListLon } = useContext(LocationListContext);
+
 
   let marker = { lng: 50, lat: 55 };
 
@@ -58,7 +58,7 @@ function CurrentAir() {
       <h2 className="mb-4">Current Air Data <strong className="float-right aqi">AQI: {airData.list[0].main.aqi} <small></small></strong></h2>
       <Table responsive>
         <thead>
-        <tr>
+          <tr>
             <th>CO</th>
             <th>NO</th>
             <th>NO<sub>2</sub></th>
@@ -84,12 +84,18 @@ function CurrentAir() {
 
         </tbody>
       </Table>
+      <div className="d-flex justify-content-between">
+        <small className="mr-3">Carbon Monoxide CO; Nitric oxide NO; Nitrogen Dioxide NO<sub>2</sub>; Ozone O<sub>3</sub>; Sulfur dioxide SO<sub>2</sub>; PM<sub>2.5</sub>- particles with diameter less than 2.5 micrometres; PM<sub>10</sub> - less than 10 micrones; Ammonia NH<sub>3</sub>
 
-      <small className="table-units text-right">
-        <div>AIR QUALITY INDEX </div>
-        <div>1 - very good</div><div>5 - poor</div>
-        <div>mg/m<sup>3</sup></div>
-      </small>
+        </small>
+        <small className="table-units text-right">
+          <div>AIR QUALITY INDEX </div>
+          <div>1 - very good</div><div>5 - poor</div>
+          <div>mg/m<sup>3</sup></div>
+        </small>
+
+      </div>
+
 
     </div>
 
