@@ -29,8 +29,8 @@ export default function App() {
           <Switch>
 
             
-            <Route exact path="/" component={DisplayForecast} />
-            <Route exact path="/my-locations" component={DisaplayMyLocations} />
+            <PrivateRoute exact path="/" component={DisplayForecast} />
+            <PrivateRoute exact path="/my-locations" component={DisaplayMyLocations} />
 
             <PrivateRoute path='/posts' component={Post} />
             <PrivateRoute path="/update-profile" component={UpdateProfile} />
