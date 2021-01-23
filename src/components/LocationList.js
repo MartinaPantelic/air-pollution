@@ -1,25 +1,18 @@
-import React, { createContext } from 'react';
-export const LocationListContext = createContext();
+import React from 'react';
 
 
-const LocationListContextProvider = (props) => {
-  let locationListCoord = props.location.map(locationItem => {
-    return (
-      locationItem.lon
-    );
-  })
-  let locationListLon = locationListCoord[locationListCoord.length - 1]
 
-  console.log(locationListLon)
+const LocationList = (props) => {
+  
 
   return (
-    <LocationListContext.Provider value={{ locationListLon }}>
+ 
     <section className="location-list list-group mb-3 mt-3">
       <h4 className="locations-title mb-3">My Locations</h4>
       <ul>
         {props.location.map(locationItem => (
           <li key={locationItem.id} className="d-flex list-group-item list-group-item-action"> 
-          <a className="custom-tooltip" onClick={props.clickHandler.bind(this,locationItem.lat, locationItem.lon)}>{locationItem.place}
+          <a className="custom-tooltip" onClick={props.clickHandler.bind(this,locationItem.lat, locationItem.lon, locationItem.place)}>{locationItem.place}
           <span className="tooltiptext">Click to see Air Data for {locationItem.place}</span>
           </a>
             <span className="d-none">{locationItem.lon}</span>
@@ -30,8 +23,7 @@ const LocationListContextProvider = (props) => {
       </ul>
      
     </section>
-    </LocationListContext.Provider>
   );
 };
 
-export default LocationListContextProvider;
+export default LocationList;

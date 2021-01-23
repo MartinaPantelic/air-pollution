@@ -29,11 +29,11 @@ export default function App() {
           <Switch>
 
             
-            <PrivateRoute exact path="/" component={DisplayForecast} />
-            <PrivateRoute exact path="/my-locations" component={DisaplayMyLocations} />
+            <Route exact path="/" component={DisplayForecast} />
+            <Route exact path="/my-locations" component={DisaplayMyLocations} />
 
-            <PrivateRoute path='/posts' component={Post} />
-            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <Route path='/posts' component={Post} />
+            <Route path="/update-profile" component={UpdateProfile} />
             <Route exact path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/forgot-password" component={ForgotPassword} />

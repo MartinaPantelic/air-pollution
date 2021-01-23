@@ -14,6 +14,7 @@ const AddLocation = () => {
   const [error, setError] = useState();
   const [userLocation, setUserLocation] = useState([]);
   const [airListData, setAirListData] = useState(null)
+  const [placeListData, setPlaceListData] = useState(null)
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -82,19 +83,22 @@ const AddLocation = () => {
     });
   };
 
-  const listLocationClickHandler = async (lat, lon) => {
+  const listLocationClickHandler = async (lat, lon, place) => {
     const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
-
+    //const placeItem = place;
+    console.log(place)
     console.log(url);
     try {
       const response = await axios.get(url)
+      const placeItem = await place;
       setAirListData(response.data)
+      setPlaceListData(placeItem)
       console.log(response.data)
     } catch (err) {
 
     }
   }
-  console.log(airListData)
+  console.log(placeListData)
 
   return (
     <>
@@ -106,13 +110,12 @@ const AddLocation = () => {
           onRemoveItem={removeLocationHandler}
         />
 
-
         <div className="Location-form__actions">
           <form onSubmit={submitHandler}>
-            <Button type="submit" className="mb-1">Save Location</Button>
+            <Button type="submit" className="mb-5">Save Location</Button>
           </form>
         </div>
-
+        <h1>{placeListData}</h1>
       </section>
       <div className="add-location">
         <div>{(airListData == null) ? null :
@@ -146,16 +149,16 @@ const AddLocation = () => {
               </tbody>
             </Table>
             <div className="d-flex justify-content-between">
-        <small className="mr-3">Carbon Monoxide CO; Nitric oxide NO; Nitrogen Dioxide NO<sub>2</sub>; Ozone O<sub>3</sub>; Sulfur dioxide SO<sub>2</sub>; PM<sub>2.5</sub>- particles with diameter less than 2.5 micrometres; PM<sub>10</sub> - less than 10 micrones; Ammonia NH<sub>3</sub>
+              <small className="mr-3">Carbon Monoxide CO; Nitric oxide NO; Nitrogen Dioxide NO<sub>2</sub>; Ozone O<sub>3</sub>; Sulfur dioxide SO<sub>2</sub>; PM<sub>2.5</sub>- particles with diameter less than 2.5 micrometres; PM<sub>10</sub> - less than 10 micrones; Ammonia NH<sub>3</sub>
 
-        </small>
-        <small className="table-units text-right">
-          <div>AIR QUALITY INDEX </div>
-          <div>1 - very good</div><div>5 - poor</div>
-          <div>mg/m<sup>3</sup></div>
-        </small>
+              </small>
+              <small className="table-units text-right">
+                <div>AIR QUALITY INDEX </div>
+                <div>1 - very good</div><div>5 - poor</div>
+                <div>mg/m<sup>3</sup></div>
+              </small>
 
-      </div>
+            </div>
           </div>
         }
         </div>

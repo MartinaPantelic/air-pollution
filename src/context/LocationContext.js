@@ -94,7 +94,7 @@ const LocationContextProvider = (props) => {
     <LocationContext.Provider value={{ markers, longitude, latitude, panTo }}>
 
       <Container>
-        <ShowPlace />
+        {/* <ShowPlace /> */}
 
         {/* google map */}
         {/* <CurrentAir /> */}

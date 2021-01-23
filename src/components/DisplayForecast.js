@@ -8,6 +8,7 @@ import ForecastAir from "./ForecastAir";
 import AddLocation from "./AddLocation";
 import { Button } from "react-bootstrap"
 import VisibilityHandler from "./VisibilityHandler"
+import ShowPlace from "./ShowPlace";
 
 
 
@@ -20,6 +21,7 @@ const DisplayForecastAir = () => {
     return (
         <LocationContextProvider>
             {/* <LocationListContextProvider> */}
+            <ShowPlace />
             <CurrentAir />
 
             {showForecast}
