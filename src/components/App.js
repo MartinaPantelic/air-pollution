@@ -1,18 +1,19 @@
 import React from "react"
 import Navigation from "./Navigation"
-import UpdateProfile from "./UpdateProfile"
-import ForgotPassword from "./ForgotPassword"
-import Login from "./Login"
+import UpdateProfile from "./AuthComponents/UpdateProfile"
+import ForgotPassword from "./AuthComponents/ForgotPassword"
+import SignUp from "./AuthComponents/SignUp"
+import Login from "./AuthComponents/Login"
 import Post from './Post'
 import PrivateRoute from "./PrivateRoute"
-import SignUp from "./SignUp"
+
 import { AuthProvider } from "../context/AuthContext"
 
-import DisplayForecast from "./DisplayForecast"
+import DisplayForecast from "./AirComponents/DisplayForecast"
 
 
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom"
-import DisaplayMyLocations from "./DisplayMyLocations"
+import DisaplayMyLocations from "./AirComponents/DisplayMyLocations"
 
 
 export default function App() {

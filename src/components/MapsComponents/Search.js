@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 
 import { LocationContext } from '../../context/LocationContext';
 
-
+// places autocomplete when search
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -16,6 +16,7 @@ import {
     ComboboxOption,
 } from "@reach/combobox";
 
+//search location input
 const Search = () => {
     const { panTo } = useContext(LocationContext);
     const {
@@ -30,7 +31,7 @@ const Search = () => {
             radius: 1000 * 1000,
         },
     });
-    // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
+
     const handleInput = (e) => {
         setValue(e.target.value);
     };

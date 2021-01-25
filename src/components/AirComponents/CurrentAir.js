@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { LocationContext } from '../context/LocationContext';
-import { LocationListContext } from './LocationList';
+import { LocationContext } from '../../context/LocationContext';
 import { Table } from "react-bootstrap"
 import axios from "axios"
 

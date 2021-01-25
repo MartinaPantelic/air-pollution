@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { LocationContext } from '../context/LocationContext';
+import { LocationContext } from '../../context/LocationContext';
 import { Table } from "react-bootstrap"
 import axios from "axios"
 import ReactLoading from "react-loading";
@@ -88,7 +88,7 @@ function ForecastAir() {
 
           {airData.map((daily, index) => {
             return (
-              <tr>
+              <tr key={generateKey(daily.components.dt)}>
 
                 <td key={generateKey(index)}>{days[new Date(daily.dt * 1000).getDay()]}</td>
                 <td key={generateKey(daily.components.co)}>{daily.components.co}</td>
@@ -103,10 +103,8 @@ function ForecastAir() {
             )
           })}
 
-
         </tbody>
       </Table>
-
 
     </div>
 

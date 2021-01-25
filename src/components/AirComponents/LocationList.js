@@ -1,8 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-
-
+//list of saved locations fetched from firebase
 const LocationList = (props) => {
+  
+    const timer = setTimeout(() => {
+     
+        fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json'
+       
+        )
+          .then(response => response.json())
+          .then(responseData => {
+            const loadedLocations = [];
+            for (const key in responseData) {
+              loadedLocations.push({
+                id: key,
+                lon: responseData[key].lon,
+                lat: responseData[key].lat,
+                place: responseData[key].place
+              });
+            }
+        
+      }
+
+    , 500);
+    return () => {
+      clearTimeout(timer);
+    };
+
+  }, []);
+
   
 
   return (

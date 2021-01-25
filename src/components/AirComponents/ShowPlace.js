@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { LocationContext } from '../context/LocationContext';
+import { LocationContext } from '../../context/LocationContext';
 
 import axios from "axios"
 

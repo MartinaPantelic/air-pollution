@@ -9,8 +9,8 @@ import {
 import { formatRelative } from "date-fns";
 import { Container, Button } from "react-bootstrap"
 
-import ShowPlace from '../components/ShowPlace';
-import DisplayMyLocations from '../components/DisplayMyLocations';
+import ShowPlace from '../components/AirComponents/ShowPlace';
+
 
 
 import Search from '../components/MapsComponents/Search'
@@ -50,7 +50,7 @@ const LocationContextProvider = (props) => {
         time: new Date(),
       },
     ]);
-    console.log(e.latLng.lat())
+  
 
 
 

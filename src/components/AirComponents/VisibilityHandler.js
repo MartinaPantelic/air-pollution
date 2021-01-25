@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const VisibilityHandler = (component, visibility = false) => {
     const [visible, setVisible] = useState(() => visibility)

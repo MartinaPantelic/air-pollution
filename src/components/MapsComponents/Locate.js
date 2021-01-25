@@ -1,14 +1,14 @@
-import React, {useContext} from "react"
+import React, { useContext } from "react"
 import { LocationContext } from '../../context/LocationContext';
 import { Button } from "react-bootstrap"
 
-
+// users geolocation trigger
 function Locate() {
 
-    const { panTo } = useContext(LocationContext);
+  const { panTo } = useContext(LocationContext);
 
   return (
-   
+
     <Button
       className="locate-btn mb-3 mt-5"
       onClick={() => {
@@ -26,7 +26,7 @@ function Locate() {
       <span className="compass-icon"></span>
       Locate me
     </Button>
-    
+
   );
 }
 
