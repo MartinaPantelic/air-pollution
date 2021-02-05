@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from "react"
 import LocationList from './LocationList';
 import { LocationContext } from '../../context/LocationContext';
-import ListSearch from '../AirComponents/ListSearch';
 import { Button, Table } from "react-bootstrap"
 import axios from "axios"
 
@@ -104,8 +103,9 @@ const AddLocation = () => {
   return (
     <>
       <section>
-      <ListSearch onLoadLocations={filteredLocationHandler} />
+      {/* <ListSearch onLoadLocations={filteredLocationHandler} /> future functionallity*/}
         <LocationList
+          onLoadLocations={filteredLocationHandler}
           clickHandler={listLocationClickHandler}
           location={userLocation}
           onRemoveItem={removeLocationHandler}

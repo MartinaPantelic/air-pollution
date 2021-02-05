@@ -3,8 +3,7 @@ import { Card } from "react-bootstrap";
 
 const ListSearch = React.memo(props => {
   const { onLoadLocations } = props;
-  //const [enteredFilter, setEnteredFilter] = useState('');
-  //const inputRef = useRef();
+
 
   useEffect(() => {
     const timer = setTimeout(() => {

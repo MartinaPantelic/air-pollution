@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { LocationContext } from '../../context/LocationContext';
+import ReactLoading from "react-loading";
 import { Table } from "react-bootstrap"
 import axios from "axios"
 
@@ -7,7 +8,7 @@ function CurrentAir() {
   const [airData, setAirData] = useState(null)
 
   const { markers } = useContext(LocationContext);
-  // const { locationListLon } = useContext(LocationListContext);
+ 
 
 
   let marker = { lng: 50, lat: 55 };
@@ -48,7 +49,7 @@ function CurrentAir() {
 
 
   if (!airData) {
-    return <div>Loading indicator</div>
+    return <ReactLoading type="spin" color="#59A9FF" className="mx-auto" />
   }
 
   return (
