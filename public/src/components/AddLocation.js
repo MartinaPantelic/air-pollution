@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext, useCallback } from "react"
-import LocationList from './LocationList';
-import { LocationContext } from '../../context/LocationContext';
-import ListSearch from '../AirComponents/ListSearch';
+import React, { useState, useEffect, useCallback, useContext } from "react"
+import LocationList from '../components/LocationList';
+import ShowPlace from '../components/ShowPlace';
+import { LocationContext } from '../context/LocationContext';
+import ListSearch from '../components/ListSearch';
 import { Button, Table } from "react-bootstrap"
 import axios from "axios"
 
@@ -22,31 +23,30 @@ const AddLocation = () => {
     })
   };
   useEffect(() => {
-
+    //console.log('RENDER Location', userLocation);
   }, [userLocation]);
   const filteredLocationHandler = useCallback(filteredLocation => {
     setUserLocation(filteredLocation);
   }, []);
-
-  //get place name from lon and lat using mas geocode
   async function getplaceName(lat, lng) {
     try {
       const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`);
       const data = await response.json();
-      
+      console.log(data);
       if (data.results.length > 0) {
-      
+        console.log("ima nesto!!!")
+        console.log(data.results[0].address_components[3].long_name)
         return data.results[0].address_components[3].long_name
 
       }
       else {
+        console.log("NEMA NISTA!!!!")
         return "Unknown Location";
       }
     } catch (error) {
       console.log(error);
     }
   }
-  //adding location to firebase
   const addLocationHandler = location => {
     fetch('https://auth-hooks-dev-3ac29-default-rtdb.firebaseio.com/locations.json', {
       method: 'POST',
@@ -58,14 +58,13 @@ const AddLocation = () => {
         return response.json();
       })
       .then(responseData => {
-        //console.log(responseData)
+        console.log(responseData)
         setUserLocation(prevLocation => [
           ...prevLocation,
           { id: responseData.name, ...location }
         ]);
       });
   };
-  //remove location from firebase
   const removeLocationHandler = locationId => {
     setIsLoading(true);
     fetch(
@@ -84,11 +83,11 @@ const AddLocation = () => {
     });
   };
 
-  // show airdata on list item click, call api
   const listLocationClickHandler = async (lat, lon, place) => {
     const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
-  
-    
+    //const placeItem = place;
+    console.log(place)
+    console.log(url);
     try {
       const response = await axios.get(url)
       const placeItem = await place;
@@ -99,12 +98,12 @@ const AddLocation = () => {
 
     }
   }
-
+  console.log(placeListData)
 
   return (
     <>
       <section>
-      <ListSearch onLoadLocations={filteredLocationHandler} />
+        <ListSearch onLoadLocations={filteredLocationHandler} />
         <LocationList
           clickHandler={listLocationClickHandler}
           location={userLocation}
